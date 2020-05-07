@@ -2,6 +2,7 @@ import Taro, { Component, Config } from '@tarojs/taro'
 import Index from './pages/index'
 
 import './app.scss'
+import 'taro-ui/dist/style/index.scss'
 
 // 如果需要在 h5 环境中开启 React Devtools
 // 取消以下注释：

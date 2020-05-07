@@ -1,6 +1,8 @@
 import Nerv from "nervjs";
 import Taro, { request as _request } from "@tarojs/taro-h5";
-import { View, Text } from '@tarojs/components';
+import { View } from '@tarojs/components';
+import { AtTabs, AtTabsPane } from 'taro-ui';
+import ZhenYuan from "../zhenyuan/index";
 import './index.scss';
 export default class Index extends Taro.Component {
   constructor(props) {
@@ -14,8 +16,10 @@ export default class Index extends Taro.Component {
      */
 
     this.state = {
-      equipmentList: [] // 装备列表
+      equipmentList: [],
+      current: 0 // 当前激活的tab
     };
+    this.bindFunc();
   }
   componentWillMount() {}
   componentDidMount() {
@@ -25,6 +29,8 @@ export default class Index extends Taro.Component {
   componentWillUnmount() {}
   componentDidShow() {}
   componentDidHide() {}
+  // 绑定函数this
+  bindFunc() {}
   // 装备
   getEquipment() {
     _request({
@@ -36,9 +42,25 @@ export default class Index extends Taro.Component {
     });
   }
   render() {
-    const { equipmentList } = this.state;
+    const { current } = this.state;
     return <View className="index">
-        <Text>{JSON.stringify(equipmentList)}</Text>
+        <AtTabs current={current} scroll tabList={[{ title: '真元' }, { title: '基础' }, { title: '装备' }, { title: '藏经阁' }, { title: 'NPC查找' }]} onClick={key => this.setState({ current: key })}>
+          <AtTabsPane current={current} index={0}>
+            <ZhenYuan />
+          </AtTabsPane>
+          <AtTabsPane current={current} index={1}>
+            <View style="font-size:18px;text-align:center;height:100px;">标签页二的内容</View>
+          </AtTabsPane>
+          <AtTabsPane current={current} index={2}>
+            <View style="font-size:18px;text-align:center;height:100px;">标签页三的内容</View>
+          </AtTabsPane>
+          <AtTabsPane current={current} index={3}>
+            <View style="font-size:18px;text-align:center;height:100px;">标签页四的内容</View>
+          </AtTabsPane>
+          <AtTabsPane current={current} index={4}>
+            <View style="font-size:18px;text-align:center;height:100px;">标签页五的内容</View>
+          </AtTabsPane>
+        </AtTabs>
       </View>;
   }
   config = {
