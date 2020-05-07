@@ -1,12 +1,28 @@
 import Taro, { Component, Config } from '@tarojs/taro'
 import { View, Text } from '@tarojs/components'
 import './index.scss'
+import { IEquipment } from 'src/lib/interface'
 
-export default class Index extends Component {
+interface IState {
+  equipmentList: IEquipment[];
+}
+
+export default class Index extends Component<{}, IState> {
+
+  constructor (props) {
+    super(props)
+
+    this.state = {
+      equipmentList: [] // 装备列表
+    }
+  }
 
   componentWillMount () { }
 
-  componentDidMount () { }
+  componentDidMount () {
+    // 获取装备
+    this.getEquipment()
+  }
 
   componentWillUnmount () { }
 
@@ -25,10 +41,23 @@ export default class Index extends Component {
     navigationBarTitleText: '首页'
   }
 
+  // 装备
+  getEquipment() {
+    Taro.request({
+      url: 'https://cors-anywhere.herokuapp.com/http://bz.hpeng.cn/Ajax/AjaxGetZB.aspx?CId=64&t=1588844199131',
+      success: (res) => {
+        console.log(res.data)
+        this.setState({ equipmentList: res.data })
+      }
+    })
+  }
+
   render () {
+    const { equipmentList } = this.state
+
     return (
       <View className='index'>
-        <Text>Hello world!</Text>
+        <Text>{JSON.stringify(equipmentList)}</Text>
       </View>
     )
   }
