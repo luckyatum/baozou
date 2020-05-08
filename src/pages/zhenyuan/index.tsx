@@ -5,6 +5,7 @@ import ZhenYuanSidebar from '../../components/ZhenYuanSidebar'
 
 import './index.scss'
 import { IWuXue } from 'src/lib/interface'
+import * as _ from 'lodash'
 
 interface IState {
   wuXueList: IWuXue[];
@@ -48,6 +49,28 @@ export default class Index extends Component<{}, IState> {
 
   // 绑定函数this
   bindFunc() {
+    this.handleWuXueSelect = this.handleWuXueSelect.bind(this)
+  }
+
+  // 武学选择后触发
+  handleWuXueSelect(wuXue: IWuXue, isActive: boolean) {
+    const { wuXueList } = this.state
+
+    // 深拷贝数组
+    const [ ...newWuXueList ] = wuXueList
+
+    if (isActive) {
+      // 新增加武学
+      newWuXueList.push(wuXue)
+    } else {
+      // 删除对应武学
+      _.remove(newWuXueList, (n: IWuXue) => {
+        return n.id === wuXue.id
+      })
+    }
+
+    // 更新列表
+    this.setState({ wuXueList: newWuXueList })
   }
 
   render () {
@@ -61,7 +84,7 @@ export default class Index extends Component<{}, IState> {
           mask
           onClose={() => this.setState({ isShowDrawer: false })}
         >
-          <ZhenYuanSidebar wuXueList={wuXueList} />
+          <ZhenYuanSidebar wuXueList={wuXueList} handleWuXueSelect={this.handleWuXueSelect} handleClose={() => this.setState({ isShowDrawer: false })} />
         </AtDrawer>
       </View>
     )

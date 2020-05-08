@@ -8,8 +8,10 @@ export interface IEquipment {
 
 // 武学接口
 export interface IWuXue {
-    id: string;
-    difficulty: string;
-    type: string;
-    value: string;
+    Id: string;
+    Title: string;
+    MenPai: string;
+    Type: string;
+    NanDu: string;
+    Sex: string;
 }

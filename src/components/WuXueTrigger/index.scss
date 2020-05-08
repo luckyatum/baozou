@@ -1,0 +1,24 @@
+.wuxue-trigger {
+    .at-switch {
+        margin: 0;
+        padding: 10px;
+        background-color: inherit;
+        .at-switch__title {
+            color: #ddd;
+        }
+        .at-switch__container {
+            background-color: inherit;
+            .at-switch__switch {
+                width: 100px;
+                height: 56px;
+                border-radius: 32px;
+                &::before {
+                }
+                &::after {
+                    width: 54px;
+                    height: 52px;
+                }
+            }
+        }
+    }
+}

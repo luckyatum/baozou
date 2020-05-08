@@ -4,6 +4,7 @@ import { View } from '@tarojs/components';
 import { AtDrawer, AtButton } from 'taro-ui';
 import ZhenYuanSidebar from "../../components/ZhenYuanSidebar/index";
 import './index.scss';
+import * as _ from 'lodash';
 export default class Index extends Taro.Component {
   constructor(props) {
     super(props);
@@ -27,13 +28,32 @@ export default class Index extends Taro.Component {
   componentDidShow() {}
   componentDidHide() {}
   // 绑定函数this
-  bindFunc() {}
+  bindFunc() {
+    this.handleWuXueSelect = this.handleWuXueSelect.bind(this);
+  }
+  // 武学选择后触发
+  handleWuXueSelect(wuXue, isActive) {
+    const { wuXueList } = this.state;
+    // 深拷贝数组
+    const [...newWuXueList] = wuXueList;
+    if (isActive) {
+      // 新增加武学
+      newWuXueList.push(wuXue);
+    } else {
+      // 删除对应武学
+      _.remove(newWuXueList, n => {
+        return n.id === wuXue.id;
+      });
+    }
+    // 更新列表
+    this.setState({ wuXueList: newWuXueList });
+  }
   render() {
     const { isShowDrawer, wuXueList } = this.state;
     return <View className="zhenyuan">
         <AtButton type="primary" onClick={() => this.setState({ isShowDrawer: true })}>选择门派</AtButton>
         <AtDrawer show={isShowDrawer} mask onClose={() => this.setState({ isShowDrawer: false })}>
-          <ZhenYuanSidebar wuXueList={wuXueList} />
+          <ZhenYuanSidebar wuXueList={wuXueList} handleWuXueSelect={this.handleWuXueSelect} handleClose={() => this.setState({ isShowDrawer: false })} />
         </AtDrawer>
       </View>;
   }
