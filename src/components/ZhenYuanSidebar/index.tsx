@@ -26,7 +26,6 @@ export default class Index extends Component<IProps, IState> {
 
   constructor (props: IProps) {
     super(props)
-    console.log('props=', props)
     // 获取初始化选择的门派
     const menPaiKey: string = menPaiList[initMenPaiIndex]
     // 获取初始化选择的性别
@@ -70,14 +69,16 @@ export default class Index extends Component<IProps, IState> {
 
   // 根据门派和性别过滤武学
   filterWuXueList(menPaiKey: string, sexKey: string): IWuXue[] {
-      return allWuXueList.filter((a: IWuXue) => {
+      const filterList = allWuXueList.filter((a: IWuXue) => {
           return (a.MenPai === '江湖' || a.MenPai === menPaiKey) && (a.Sex.includes(sexKey))
       })
+      return filterList
   }
-
 
   render () {
     const { menPaiIndex, sexIndex, renderWuXueList, activeWuXueIds } = this.state
+    const menPaiKey = menPaiList[menPaiIndex]
+    const sexKey = sexList[sexIndex]
 
     return (
       <View className='wuxue-container'>
@@ -89,14 +90,16 @@ export default class Index extends Component<IProps, IState> {
           <View className='select-container'>
             {/* 门派 */}
             <Picker className='select-item' value={menPaiIndex} mode='selector' range={menPaiList} onChange={(event) => {
-                this.setState({ menPaiIndex: event.detail.value as number })
+                const curIndex: number = event.detail.value as number
+                this.setState({ menPaiIndex: curIndex, renderWuXueList: this.filterWuXueList(menPaiList[curIndex], sexKey) })
             }}>
                 <Text>门派：</Text>
                 <Text className='select-trigger'>{menPaiList[menPaiIndex]}</Text>
             </Picker>
             {/* 性别 */}
             <Picker className='select-item' value={sexIndex} mode='selector' range={sexList} onChange={(event) => {
-                this.setState({ sexIndex: event.detail.value as number })
+                const curIndex: number = event.detail.value as number
+                this.setState({ sexIndex: curIndex, renderWuXueList: this.filterWuXueList(menPaiKey, sexList[curIndex]) })
             }}>
                 <Text>性别：</Text>
                 <Text className='select-trigger'>{sexList[sexIndex]}</Text>
@@ -108,6 +111,7 @@ export default class Index extends Component<IProps, IState> {
             {
               renderWuXueList.map((r: IWuXue) =>
                 <WuXueTrigger
+                  id={r.Id}
                   key={r.Id}
                   status={activeWuXueIds.includes(r.Id)}
                   name={r.Title}
