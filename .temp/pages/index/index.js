@@ -2,7 +2,7 @@ import Nerv from "nervjs";
 import Taro, { request as _request } from "@tarojs/taro-h5";
 import { View } from '@tarojs/components';
 import { AtTabs, AtTabsPane } from 'taro-ui';
-import ZhenYuan from "../zhenyuan/index";
+import ZhenYuan from "../zhenYuan/index";
 import './index.scss';
 export default class Index extends Taro.Component {
   constructor(props) {

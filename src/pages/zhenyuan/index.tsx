@@ -1,10 +1,13 @@
 import Taro, { Component, Config } from '@tarojs/taro'
 import { View } from '@tarojs/components'
 import { AtDrawer, AtButton } from 'taro-ui'
+import ZhenYuanSidebar from '../../components/ZhenYuanSidebar'
 
 import './index.scss'
+import { IWuXue } from 'src/lib/interface'
 
 interface IState {
+  wuXueList: IWuXue[];
   isShowDrawer: boolean;
 }
 
@@ -14,6 +17,7 @@ export default class Index extends Component<{}, IState> {
     super(props)
 
     this.state = {
+      wuXueList: [], // 左侧栏选择的武学列表
       isShowDrawer: false // 是否展示左侧抽屉
     }
 
@@ -47,7 +51,7 @@ export default class Index extends Component<{}, IState> {
   }
 
   render () {
-    const { isShowDrawer } = this.state
+    const { isShowDrawer, wuXueList } = this.state
 
     return (
       <View className='zhenyuan'>
@@ -56,8 +60,8 @@ export default class Index extends Component<{}, IState> {
           show={isShowDrawer}
           mask
           onClose={() => this.setState({ isShowDrawer: false })}
-          items={['菜单1', '菜单2']}
         >
+          <ZhenYuanSidebar wuXueList={wuXueList} />
         </AtDrawer>
       </View>
     )

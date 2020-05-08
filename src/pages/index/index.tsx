@@ -1,7 +1,7 @@
 import Taro, { Component, Config } from '@tarojs/taro'
 import { View } from '@tarojs/components'
 import { AtTabs, AtTabsPane } from 'taro-ui'
-import ZhenYuan from '../zhenyuan'
+import ZhenYuan from '../zhenYuan'
 import { IEquipment } from 'src/lib/interface'
 
 import './index.scss'

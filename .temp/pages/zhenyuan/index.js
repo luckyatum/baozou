@@ -2,6 +2,7 @@ import Nerv from "nervjs";
 import Taro from "@tarojs/taro-h5";
 import { View } from '@tarojs/components';
 import { AtDrawer, AtButton } from 'taro-ui';
+import ZhenYuanSidebar from "../../components/ZhenYuanSidebar/index";
 import './index.scss';
 export default class Index extends Taro.Component {
   constructor(props) {
@@ -15,6 +16,7 @@ export default class Index extends Taro.Component {
      */
 
     this.state = {
+      wuXueList: [],
       isShowDrawer: false // 是否展示左侧抽屉
     };
     this.bindFunc();
@@ -27,10 +29,11 @@ export default class Index extends Taro.Component {
   // 绑定函数this
   bindFunc() {}
   render() {
-    const { isShowDrawer } = this.state;
+    const { isShowDrawer, wuXueList } = this.state;
     return <View className="zhenyuan">
         <AtButton type="primary" onClick={() => this.setState({ isShowDrawer: true })}>选择门派</AtButton>
-        <AtDrawer show={isShowDrawer} mask onClose={() => this.setState({ isShowDrawer: false })} items={['菜单1', '菜单2']}>
+        <AtDrawer show={isShowDrawer} mask onClose={() => this.setState({ isShowDrawer: false })}>
+          <ZhenYuanSidebar wuXueList={wuXueList} />
         </AtDrawer>
       </View>;
   }
