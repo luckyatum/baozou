@@ -55,7 +55,8 @@ export default class Index extends Component<{}, IState> {
   // 装备
   getEquipment() {
     Taro.request({
-      url: 'https://cors-anywhere.herokuapp.com/http://bz.hpeng.cn/Ajax/AjaxGetZB.aspx?CId=64&t=1588844199131',
+      // url: 'https://cors-anywhere.herokuapp.com/http://bz.hpeng.cn/Ajax/AjaxGetZB.aspx?CId=64&t=1588844199131',
+      url: 'http://bz.hpeng.cn/Ajax/AjaxGetZB.aspx?CId=64&t=1588844199131',
       success: (res) => {
         console.log(res.data)
         this.setState({ equipmentList: res.data })

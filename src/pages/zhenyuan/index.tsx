@@ -65,7 +65,7 @@ export default class Index extends Component<{}, IState> {
     } else {
       // 删除对应武学
       _.remove(newWuXueList, (n: IWuXue) => {
-        return n.id === wuXue.id
+        return n.Id === wuXue.Id
       })
     }
 

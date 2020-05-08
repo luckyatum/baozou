@@ -26,7 +26,7 @@ export default class Index extends Component<IProps, IState> {
 
   constructor (props: IProps) {
     super(props)
-
+    console.log('props=', props)
     // 获取初始化选择的门派
     const menPaiKey: string = menPaiList[initMenPaiIndex]
     // 获取初始化选择的性别
@@ -36,7 +36,7 @@ export default class Index extends Component<IProps, IState> {
       menPaiIndex: initMenPaiIndex, // 当前选中的门派
       sexIndex: initSexIndex, // 当前选中的性别
       renderWuXueList: this.filterWuXueList(menPaiKey, sexKey), // 渲染在左侧的武学列表
-      activeWuXueIds: props.wuXueList.map((w: IWuXue) => w.Id)
+      activeWuXueIds: props.wuXueList ? props.wuXueList.map((w: IWuXue) => w.Id) : []
     }
 
     this.bindFunc()
@@ -71,7 +71,6 @@ export default class Index extends Component<IProps, IState> {
   // 根据门派和性别过滤武学
   filterWuXueList(menPaiKey: string, sexKey: string): IWuXue[] {
       return allWuXueList.filter((a: IWuXue) => {
-          console.log(menPaiKey, sexKey, a.MenPai === '江湖', a.MenPai === menPaiKey, a.Sex.includes(sexKey))
           return (a.MenPai === '江湖' || a.MenPai === menPaiKey) && (a.Sex.includes(sexKey))
       })
   }
@@ -103,20 +102,19 @@ export default class Index extends Component<IProps, IState> {
                 <Text className='select-trigger'>{sexList[sexIndex]}</Text>
             </Picker>
           </View>
-          <ScrollView
+          <View
             className='scroll-container'
-            scrollY
-            scrollWithAnimation
           >
             {
               renderWuXueList.map((r: IWuXue) =>
                 <WuXueTrigger
+                  key={r.Id}
                   status={activeWuXueIds.includes(r.Id)}
                   name={r.Title}
                   handleToggle={(isActive: boolean) => this.props.handleWuXueSelect(r, isActive)}
                 />)
             }
-          </ScrollView>
+          </View>
         </View>
       </View>
     )

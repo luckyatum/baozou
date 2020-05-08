@@ -7,6 +7,7 @@ import { AtSwitch } from 'taro-ui'
 interface IProps {
   status: boolean;
   name: string;
+  key: string;
   handleToggle?: (isActive: boolean) => void;
 }
 
@@ -17,10 +18,10 @@ export default class Index extends Component<IProps, {}> {
   }
 
   render () {
-    const { status, name } = this.props
+    const { key, status, name } = this.props
 
     return (
-      <View className='wuxue-trigger'>
+      <View className='wuxue-trigger' key={key}>
         <AtSwitch
           title={name}
           color='#4cd964'

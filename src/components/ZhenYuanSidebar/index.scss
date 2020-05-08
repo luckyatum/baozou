@@ -16,10 +16,14 @@
     }
     .wuxue-body {
         flex: 1;
+        display: flex;
+        flex-direction: column;
         padding: 10px 12px;
+        font-size: 32px;
         overflow: hidden;
         .select-container {
             display: flex;
+            margin-bottom: 20px;
             .select-item {
                 flex: 1;
                 .select-trigger {
@@ -31,7 +35,9 @@
             }
         }
         .scroll-container {
-            height: 100%;
+            flex: 1;
+            overflow-x: hidden;
+            overflow-y: auto;
             .wuxue-trigger {
                 &:last-child {
                     margin-bottom: 30px;
