@@ -28,7 +28,7 @@ export default class Index extends Component<{}, IState> {
 
   componentDidMount () {
     // 获取装备
-    this.getEquipment()
+    // this.getEquipment()
   }
 
   componentWillUnmount () { }
@@ -45,7 +45,9 @@ export default class Index extends Component<{}, IState> {
    * 提示和声明 navigationBarTextStyle: 'black' | 'white' 类型冲突, 需要显示声明类型
    */
   config: Config = {
-    navigationBarTitleText: '首页'
+    window: {
+      backgroundColor: 'red'
+    }
   }
 
   // 绑定函数this

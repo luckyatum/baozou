@@ -18,3 +18,22 @@
         }
     }
 }
+.at-tabs {
+    display: flex;
+    flex-direction: column;
+}
+.at-tabs__body {
+    flex-grow: 1;
+}
+.at-tag {
+    padding: 0 20px;
+}
+at-icon {
+    flex: 1;
+    .at-icon-trash {
+        display: flex;
+        align-items: center;
+        width: 100%;
+        height: 100%;
+    }
+}

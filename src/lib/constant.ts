@@ -6,13 +6,38 @@ export const menPaiList: string[] = ['丐帮', '少林', '太极', '五毒', '�
 // 性别列表
 export const sexList: string[] = ['男', '女']
 
+// 等级列表
+export const levelList: number[] = [ 100, 150, 200, 250, 300, 350, 400 ]
+
+// 真元等级对应的基数值
+export const zhenYuanBase = {
+    100: 300,
+    150: 1000,
+    200: 2400,
+    250: 4630,
+    300: 8000,
+    350: 12700,
+    400: 19000
+}
+
+// 武学类型对应简称
+export const wuXueTypeMap = {
+    QUAN: '拳法',
+    JIAN: '剑法',
+    DAO: '刀法',
+    GUN: '棍法',
+    BIAN: '鞭法',
+    AN: '暗器',
+    QING: '轻功'
+}
+
 // 武学列表
 export const allWuXueList: IWuXue[] = [
     {
         Id: "90",
         Title: "咏春拳",
         MenPai: "江湖",
-        Type: "拳法",
+        Type: wuXueTypeMap.QUAN,
         NanDu: "1.1",
         Sex: "男,女"
     },
@@ -20,7 +45,7 @@ export const allWuXueList: IWuXue[] = [
         Id: "10",
         Title: "虾米拳法",
         MenPai: "江湖",
-        Type: "拳法",
+        Type: wuXueTypeMap.QUAN,
         NanDu: "1.1",
         Sex: "男,女"
     },
@@ -28,7 +53,7 @@ export const allWuXueList: IWuXue[] = [
         Id: "11",
         Title: "太极拳",
         MenPai: "太极",
-        Type: "拳法",
+        Type: wuXueTypeMap.QUAN,
         NanDu: "1.2",
         Sex: "男,女"
     },
@@ -36,7 +61,7 @@ export const allWuXueList: IWuXue[] = [
         Id: "85",
         Title: "金蛇游身掌",
         MenPai: "江湖",
-        Type: "拳法",
+        Type: wuXueTypeMap.QUAN,
         NanDu: "1.4",
         Sex: "男,女"
     },
@@ -44,7 +69,7 @@ export const allWuXueList: IWuXue[] = [
         Id: "124",
         Title: "雪山六阳掌",
         MenPai: "雪山",
-        Type: "拳法",
+        Type: wuXueTypeMap.QUAN,
         NanDu: "2",
         Sex: "男,女"
     },
@@ -52,7 +77,7 @@ export const allWuXueList: IWuXue[] = [
         Id: "125",
         Title: "雪山六阳掌",
         MenPai: "逍遥",
-        Type: "拳法",
+        Type: wuXueTypeMap.QUAN,
         NanDu: "2",
         Sex: "男,女"
     },
@@ -60,7 +85,7 @@ export const allWuXueList: IWuXue[] = [
         Id: "12",
         Title: "雪影擒拿手",
         MenPai: "雪山",
-        Type: "拳法",
+        Type: wuXueTypeMap.QUAN,
         NanDu: "1.1",
         Sex: "男,女"
     },
@@ -68,7 +93,7 @@ export const allWuXueList: IWuXue[] = [
         Id: "13",
         Title: "血杀掌",
         MenPai: "血刀",
-        Type: "拳法",
+        Type: wuXueTypeMap.QUAN,
         NanDu: "1.1",
         Sex: "男,女"
     },
@@ -76,7 +101,7 @@ export const allWuXueList: IWuXue[] = [
         Id: "14",
         Title: "万毒手",
         MenPai: "五毒",
-        Type: "拳法",
+        Type: wuXueTypeMap.QUAN,
         NanDu: "1.2",
         Sex: "男,女"
     },
@@ -84,7 +109,7 @@ export const allWuXueList: IWuXue[] = [
         Id: "15",
         Title: "达摩拳法",
         MenPai: "少林",
-        Type: "拳法",
+        Type: wuXueTypeMap.QUAN,
         NanDu: "1.1",
         Sex: "男"
     },
@@ -92,7 +117,7 @@ export const allWuXueList: IWuXue[] = [
         Id: "117",
         Title: "金刚般若掌",
         MenPai: "少林",
-        Type: "拳法",
+        Type: wuXueTypeMap.QUAN,
         NanDu: "1.8",
         Sex: "男"
     },
@@ -100,7 +125,7 @@ export const allWuXueList: IWuXue[] = [
         Id: "116",
         Title: "真*降龙十八掌",
         MenPai: "丐帮",
-        Type: "拳法",
+        Type: wuXueTypeMap.QUAN,
         NanDu: "2",
         Sex: "男,女"
     },
@@ -108,7 +133,7 @@ export const allWuXueList: IWuXue[] = [
         Id: "16",
         Title: "降龙十八掌",
         MenPai: "丐帮",
-        Type: "拳法",
+        Type: wuXueTypeMap.QUAN,
         NanDu: "1.5",
         Sex: "男,女"
     },
@@ -116,7 +141,7 @@ export const allWuXueList: IWuXue[] = [
         Id: "17",
         Title: "素心掌",
         MenPai: "玉女",
-        Type: "拳法",
+        Type: wuXueTypeMap.QUAN,
         NanDu: "1.1",
         Sex: "女"
     },
@@ -124,7 +149,7 @@ export const allWuXueList: IWuXue[] = [
         Id: "18",
         Title: "七伤拳",
         MenPai: "逍遥",
-        Type: "拳法",
+        Type: wuXueTypeMap.QUAN,
         NanDu: "1.5",
         Sex: "男,女"
     },
@@ -132,7 +157,7 @@ export const allWuXueList: IWuXue[] = [
         Id: "126",
         Title: "九阴幽冥爪",
         MenPai: "逍遥",
-        Type: "拳法",
+        Type: wuXueTypeMap.QUAN,
         NanDu: "1.8",
         Sex: "男,女"
     },
@@ -140,7 +165,7 @@ export const allWuXueList: IWuXue[] = [
         Id: "19",
         Title: "伊贺体术",
         MenPai: "伊贺",
-        Type: "拳法",
+        Type: wuXueTypeMap.QUAN,
         NanDu: "1.1",
         Sex: "男,女"
     },
@@ -148,7 +173,7 @@ export const allWuXueList: IWuXue[] = [
         Id: "20",
         Title: "如来神掌",
         MenPai: "少林",
-        Type: "拳法",
+        Type: wuXueTypeMap.QUAN,
         NanDu: "2",
         Sex: "男"
     },
@@ -156,7 +181,7 @@ export const allWuXueList: IWuXue[] = [
         Id: "61",
         Title: "如来神掌",
         MenPai: "逍遥",
-        Type: "拳法",
+        Type: wuXueTypeMap.QUAN,
         NanDu: "2",
         Sex: "男，女"
     },
@@ -164,7 +189,7 @@ export const allWuXueList: IWuXue[] = [
         Id: "114",
         Title: "玄冥神掌",
         MenPai: "江湖",
-        Type: "拳法",
+        Type: wuXueTypeMap.QUAN,
         NanDu: "1.7",
         Sex: "男，女"
     },
@@ -172,7 +197,7 @@ export const allWuXueList: IWuXue[] = [
         Id: "108",
         Title: "雪饮刀法",
         MenPai: "江湖",
-        Type: "刀法",
+        Type: wuXueTypeMap.DAO,
         NanDu: "1.7",
         Sex: "男,女"
     },
@@ -180,7 +205,7 @@ export const allWuXueList: IWuXue[] = [
         Id: "22",
         Title: "杀猪刀法",
         MenPai: "江湖",
-        Type: "刀法",
+        Type: wuXueTypeMap.DAO,
         NanDu: "1.2",
         Sex: "男,女"
     },
@@ -188,7 +213,7 @@ export const allWuXueList: IWuXue[] = [
         Id: "23",
         Title: "狂风刀法",
         MenPai: "江湖",
-        Type: "刀法",
+        Type: wuXueTypeMap.DAO,
         NanDu: "1.4",
         Sex: "男,女"
     },
@@ -196,7 +221,7 @@ export const allWuXueList: IWuXue[] = [
         Id: "24",
         Title: "血影刀法",
         MenPai: "血刀",
-        Type: "刀法",
+        Type: wuXueTypeMap.DAO,
         NanDu: "1.2",
         Sex: "男,女"
     },
@@ -204,7 +229,7 @@ export const allWuXueList: IWuXue[] = [
         Id: "25",
         Title: "慈悲刀法",
         MenPai: "少林",
-        Type: "刀法",
+        Type: wuXueTypeMap.DAO,
         NanDu: "1.1",
         Sex: "男"
     },
@@ -212,7 +237,7 @@ export const allWuXueList: IWuXue[] = [
         Id: "26",
         Title: "玄虚刀法",
         MenPai: "太极",
-        Type: "刀法",
+        Type: wuXueTypeMap.DAO,
         NanDu: "1.1",
         Sex: "男,女"
     },
@@ -220,7 +245,7 @@ export const allWuXueList: IWuXue[] = [
         Id: "27",
         Title: "川枫一刀流",
         MenPai: "伊贺",
-        Type: "刀法",
+        Type: wuXueTypeMap.DAO,
         NanDu: "1.3",
         Sex: "男,女"
     },
@@ -228,7 +253,7 @@ export const allWuXueList: IWuXue[] = [
         Id: "28",
         Title: "六合刀法",
         MenPai: "江湖",
-        Type: "刀法",
+        Type: wuXueTypeMap.DAO,
         NanDu: "1.2",
         Sex: "男,女"
     },
@@ -236,7 +261,7 @@ export const allWuXueList: IWuXue[] = [
         Id: "111",
         Title: "雄霸天下刀法",
         MenPai: "江湖",
-        Type: "刀法",
+        Type: wuXueTypeMap.DAO,
         NanDu: "2",
         Sex: "男，女"
     },
@@ -244,7 +269,7 @@ export const allWuXueList: IWuXue[] = [
         Id: "118",
         Title: "影忍三刀流",
         MenPai: "伊贺",
-        Type: "刀法",
+        Type: wuXueTypeMap.DAO,
         NanDu: "1.8",
         Sex: "男,女"
     },
@@ -252,7 +277,7 @@ export const allWuXueList: IWuXue[] = [
         Id: "29",
         Title: "太极剑",
         MenPai: "太极",
-        Type: "剑法",
+        Type: wuXueTypeMap.JIAN,
         NanDu: "1.5",
         Sex: "男,女"
     },
@@ -260,7 +285,7 @@ export const allWuXueList: IWuXue[] = [
         Id: "30",
         Title: "雪山剑法",
         MenPai: "雪山",
-        Type: "剑法",
+        Type: wuXueTypeMap.JIAN,
         NanDu: "1.2",
         Sex: "男,女"
     },
@@ -268,7 +293,7 @@ export const allWuXueList: IWuXue[] = [
         Id: "31",
         Title: "唐诗剑法",
         MenPai: "江湖",
-        Type: "剑法",
+        Type: wuXueTypeMap.JIAN,
         NanDu: "1.4",
         Sex: "男,女"
     },
@@ -276,7 +301,7 @@ export const allWuXueList: IWuXue[] = [
         Id: "32",
         Title: "采花剑法",
         MenPai: "江湖",
-        Type: "剑法",
+        Type: wuXueTypeMap.JIAN,
         NanDu: "1.2",
         Sex: "男"
     },
@@ -284,7 +309,7 @@ export const allWuXueList: IWuXue[] = [
         Id: "33",
         Title: "玉女剑法",
         MenPai: "玉女",
-        Type: "剑法",
+        Type: wuXueTypeMap.JIAN,
         NanDu: "1.4",
         Sex: "女"
     },
@@ -292,7 +317,7 @@ export const allWuXueList: IWuXue[] = [
         Id: "34",
         Title: "芙蓉剑法",
         MenPai: "江湖",
-        Type: "剑法",
+        Type: wuXueTypeMap.JIAN,
         NanDu: "1.2",
         Sex: "女"
     },
@@ -300,7 +325,7 @@ export const allWuXueList: IWuXue[] = [
         Id: "119",
         Title: "玉女素心剑",
         MenPai: "玉女",
-        Type: "剑法",
+        Type: wuXueTypeMap.JIAN,
         NanDu: "1.8",
         Sex: "女"
     },
@@ -308,7 +333,7 @@ export const allWuXueList: IWuXue[] = [
         Id: "110",
         Title: "两仪剑法",
         MenPai: "太极",
-        Type: "剑法",
+        Type: wuXueTypeMap.JIAN,
         NanDu: "2.0",
         Sex: "男，女"
     },
@@ -316,7 +341,7 @@ export const allWuXueList: IWuXue[] = [
         Id: "87",
         Title: "金蛇剑法",
         MenPai: "江湖",
-        Type: "剑法",
+        Type: wuXueTypeMap.JIAN,
         NanDu: "1.5",
         Sex: "男,女"
     },
@@ -324,7 +349,7 @@ export const allWuXueList: IWuXue[] = [
         Id: "88",
         Title: "流星蝴蝶剑",
         MenPai: "江湖",
-        Type: "剑法",
+        Type: wuXueTypeMap.JIAN,
         NanDu: "1.8",
         Sex: "男,女"
     },
@@ -412,7 +437,7 @@ export const allWuXueList: IWuXue[] = [
         Id: "41",
         Title: "女王鞭法",
         MenPai: "江湖",
-        Type: "鞭法",
+        Type: wuXueTypeMap.BIAN,
         NanDu: "1.5",
         Sex: "女"
     },
@@ -420,7 +445,7 @@ export const allWuXueList: IWuXue[] = [
         Id: "42",
         Title: "万花鞭法",
         MenPai: "玉女",
-        Type: "鞭法",
+        Type: wuXueTypeMap.BIAN,
         NanDu: "1.2",
         Sex: "女"
     },
@@ -428,7 +453,7 @@ export const allWuXueList: IWuXue[] = [
         Id: "43",
         Title: "父爱鞭法",
         MenPai: "江湖",
-        Type: "鞭法",
+        Type: wuXueTypeMap.BIAN,
         NanDu: "1.3",
         Sex: "男"
     },
@@ -436,7 +461,7 @@ export const allWuXueList: IWuXue[] = [
         Id: "44",
         Title: "无常鞭法",
         MenPai: "江湖",
-        Type: "鞭法",
+        Type: wuXueTypeMap.BIAN,
         NanDu: "1.2",
         Sex: "男,女"
     },
@@ -444,7 +469,7 @@ export const allWuXueList: IWuXue[] = [
         Id: "45",
         Title: "游龙鞭法",
         MenPai: "江湖",
-        Type: "鞭法",
+        Type: wuXueTypeMap.BIAN,
         NanDu: "1.3",
         Sex: "男,女"
     },
@@ -452,7 +477,7 @@ export const allWuXueList: IWuXue[] = [
         Id: "115",
         Title: "天女鞭法",
         MenPai: "江湖",
-        Type: "鞭法",
+        Type: wuXueTypeMap.BIAN,
         NanDu: "2",
         Sex: "女"
     },
@@ -460,7 +485,7 @@ export const allWuXueList: IWuXue[] = [
         Id: "89",
         Title: "红拂拂法",
         MenPai: "江湖",
-        Type: "鞭法",
+        Type: wuXueTypeMap.BIAN,
         NanDu: "1.5",
         Sex: "女"
     },
@@ -468,7 +493,7 @@ export const allWuXueList: IWuXue[] = [
         Id: "46",
         Title: "投石术",
         MenPai: "江湖",
-        Type: "暗器",
+        Type: wuXueTypeMap.AN,
         NanDu: "1.1",
         Sex: "男,女"
     },
@@ -476,7 +501,7 @@ export const allWuXueList: IWuXue[] = [
         Id: "47",
         Title: "唐门秘录",
         MenPai: "江湖",
-        Type: "暗器",
+        Type: wuXueTypeMap.AN,
         NanDu: "1.2",
         Sex: "男,女"
     },
@@ -484,7 +509,7 @@ export const allWuXueList: IWuXue[] = [
         Id: "49",
         Title: "赌神飞牌",
         MenPai: "江湖",
-        Type: "暗器",
+        Type: wuXueTypeMap.AN,
         NanDu: "1.4",
         Sex: "男,女"
     },
@@ -492,7 +517,7 @@ export const allWuXueList: IWuXue[] = [
         Id: "86",
         Title: "金蛇锥法",
         MenPai: "江湖",
-        Type: "暗器",
+        Type: wuXueTypeMap.AN,
         NanDu: "1.4",
         Sex: "男,女"
     },
@@ -500,7 +525,7 @@ export const allWuXueList: IWuXue[] = [
         Id: "112",
         Title: "天龙八音指法",
         MenPai: "江湖",
-        Type: "暗器",
+        Type: wuXueTypeMap.AN,
         NanDu: "2",
         Sex: "男，女"
     },
@@ -508,7 +533,7 @@ export const allWuXueList: IWuXue[] = [
         Id: "113",
         Title: "小李飞刀",
         MenPai: "江湖",
-        Type: "暗器",
+        Type: wuXueTypeMap.AN,
         NanDu: "2",
         Sex: "男，女"
     },
@@ -516,7 +541,7 @@ export const allWuXueList: IWuXue[] = [
         Id: "48",
         Title: "五毒暗器",
         MenPai: "五毒",
-        Type: "暗器",
+        Type: wuXueTypeMap.AN,
         NanDu: "1.4",
         Sex: "男,女"
     },
@@ -524,7 +549,7 @@ export const allWuXueList: IWuXue[] = [
         Id: "107",
         Title: "神机百变",
         MenPai: "江湖",
-        Type: "轻功",
+        Type: wuXueTypeMap.QING,
         NanDu: "1.4",
         Sex: "男,女"
     },
@@ -532,7 +557,7 @@ export const allWuXueList: IWuXue[] = [
         Id: "50",
         Title: "草上飞",
         MenPai: "江湖",
-        Type: "轻功",
+        Type: wuXueTypeMap.QING,
         NanDu: "1.1",
         Sex: "男,女"
     },
@@ -540,7 +565,7 @@ export const allWuXueList: IWuXue[] = [
         Id: "51",
         Title: "踏雪无痕",
         MenPai: "雪山",
-        Type: "轻功",
+        Type: wuXueTypeMap.QING,
         NanDu: "1.3",
         Sex: "男,女"
     },
@@ -548,7 +573,7 @@ export const allWuXueList: IWuXue[] = [
         Id: "52",
         Title: "血影步",
         MenPai: "血刀",
-        Type: "轻功",
+        Type: wuXueTypeMap.QING,
         NanDu: "1.1",
         Sex: "男,女"
     },
@@ -556,7 +581,7 @@ export const allWuXueList: IWuXue[] = [
         Id: "53",
         Title: "五毒幻形",
         MenPai: "五毒",
-        Type: "轻功",
+        Type: wuXueTypeMap.QING,
         NanDu: "1.1",
         Sex: "男,女"
     },
@@ -564,7 +589,7 @@ export const allWuXueList: IWuXue[] = [
         Id: "54",
         Title: "水上漂",
         MenPai: "少林",
-        Type: "轻功",
+        Type: wuXueTypeMap.QING,
         NanDu: "1.1",
         Sex: "男,女"
     },
@@ -572,7 +597,7 @@ export const allWuXueList: IWuXue[] = [
         Id: "55",
         Title: "梯云纵",
         MenPai: "太极",
-        Type: "轻功",
+        Type: wuXueTypeMap.QING,
         NanDu: "1.2",
         Sex: "男,女"
     },
@@ -580,7 +605,7 @@ export const allWuXueList: IWuXue[] = [
         Id: "56",
         Title: "逍遥游",
         MenPai: "丐帮",
-        Type: "轻功",
+        Type: wuXueTypeMap.QING,
         NanDu: "1.1",
         Sex: "男,女"
     },
@@ -588,7 +613,7 @@ export const allWuXueList: IWuXue[] = [
         Id: "57",
         Title: "飞蝶舞步",
         MenPai: "玉女",
-        Type: "轻功",
+        Type: wuXueTypeMap.QING,
         NanDu: "1.3",
         Sex: "女"
     },
@@ -596,7 +621,7 @@ export const allWuXueList: IWuXue[] = [
         Id: "58",
         Title: "疾风步",
         MenPai: "逍遥",
-        Type: "轻功",
+        Type: wuXueTypeMap.QING,
         NanDu: "1.2",
         Sex: "男,女"
     },
@@ -604,7 +629,7 @@ export const allWuXueList: IWuXue[] = [
         Id: "59",
         Title: "影遁之术",
         MenPai: "伊贺",
-        Type: "轻功",
+        Type: wuXueTypeMap.QING,
         NanDu: "1.1",
         Sex: "男,女"
     }

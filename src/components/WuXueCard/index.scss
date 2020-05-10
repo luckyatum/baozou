@@ -1,0 +1,17 @@
+.wuxue-card-container {
+    margin-bottom: 50px;
+    font-size: 26px;
+    background-color: #fff;
+    .wuxue-card-header {
+        display: flex;
+        .card-item {
+            padding: 20px 0;
+        }
+    }
+    .wuxue-card-body {
+        display: flex;
+        .card-item {
+            padding: 20px 0;
+        }
+    }
+}

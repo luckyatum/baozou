@@ -7,33 +7,29 @@ import { menPaiList, sexList, allWuXueList } from '../../lib/constant'
 import WuXueTrigger from '../WuXueTrigger'
 
 interface IProps {
+  menPaiIndex: number;
+  sexIndex: number;
   wuXueList: IWuXue[];
   handleWuXueSelect: (wuXue: IWuXue, isActive: boolean) => void;
+  handleChange: (menPaiIndex: number, sexIndex: number) => void;
   handleClose?: () => void;
 }
 
 interface IState {
-  menPaiIndex: number;
-  sexIndex: number;
   renderWuXueList: IWuXue[];
   activeWuXueIds: string[];
 }
-
-const initMenPaiIndex = 0
-const initSexIndex = 0
 
 export default class Index extends Component<IProps, IState> {
 
   constructor (props: IProps) {
     super(props)
     // 获取初始化选择的门派
-    const menPaiKey: string = menPaiList[initMenPaiIndex]
+    const menPaiKey: string = menPaiList[props.menPaiIndex]
     // 获取初始化选择的性别
-    const sexKey: string = sexList[initSexIndex]
+    const sexKey: string = sexList[props.sexIndex]
 
     this.state = {
-      menPaiIndex: initMenPaiIndex, // 当前选中的门派
-      sexIndex: initSexIndex, // 当前选中的性别
       renderWuXueList: this.filterWuXueList(menPaiKey, sexKey), // 渲染在左侧的武学列表
       activeWuXueIds: props.wuXueList ? props.wuXueList.map((w: IWuXue) => w.Id) : []
     }
@@ -76,7 +72,8 @@ export default class Index extends Component<IProps, IState> {
   }
 
   render () {
-    const { menPaiIndex, sexIndex, renderWuXueList, activeWuXueIds } = this.state
+    const { renderWuXueList, activeWuXueIds } = this.state
+    const { menPaiIndex, sexIndex } = this.props
     const menPaiKey = menPaiList[menPaiIndex]
     const sexKey = sexList[sexIndex]
 
@@ -91,7 +88,8 @@ export default class Index extends Component<IProps, IState> {
             {/* 门派 */}
             <Picker className='select-item' value={menPaiIndex} mode='selector' range={menPaiList} onChange={(event) => {
                 const curIndex: number = event.detail.value as number
-                this.setState({ menPaiIndex: curIndex, renderWuXueList: this.filterWuXueList(menPaiList[curIndex], sexKey) })
+                this.props.handleChange(curIndex, sexIndex)
+                this.setState({ renderWuXueList: this.filterWuXueList(menPaiList[curIndex], sexKey) })
             }}>
                 <Text>门派：</Text>
                 <Text className='select-trigger'>{menPaiList[menPaiIndex]}</Text>
@@ -99,7 +97,8 @@ export default class Index extends Component<IProps, IState> {
             {/* 性别 */}
             <Picker className='select-item' value={sexIndex} mode='selector' range={sexList} onChange={(event) => {
                 const curIndex: number = event.detail.value as number
-                this.setState({ sexIndex: curIndex, renderWuXueList: this.filterWuXueList(menPaiKey, sexList[curIndex]) })
+                this.props.handleChange(menPaiIndex, curIndex)
+                this.setState({ renderWuXueList: this.filterWuXueList(menPaiKey, sexList[curIndex]) })
             }}>
                 <Text>性别：</Text>
                 <Text className='select-trigger'>{sexList[sexIndex]}</Text>
