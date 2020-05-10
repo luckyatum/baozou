@@ -28,15 +28,15 @@ export interface IWuXueCard {
 }
 
 // 武学类型
-export enum wuXueType { QUAN='拳法', JIAN='剑法', DAO='刀法', GUN='棍法', BIAN='鞭法', AN='暗器', QING='轻功' }
+export enum wuXueType { QUAN='QUAN', JIAN='JIAN', DAO='DAO', GUN='GUN', BIAN='BIAN', AN='AN', QING='QING' }
 
 // 武学类型接口
 export interface IWuXueType {
-    QUAN?: IWuXue[];
-    JIAN?: IWuXue[];
-    DAO?: IWuXue[];
-    GUN?: IWuXue[];
-    BIAN?: IWuXue[];
-    AN?: IWuXue[];
-    QING?: IWuXue[];
+    QUAN?: IWuXueCard[];
+    JIAN?: IWuXueCard[];
+    DAO?: IWuXueCard[];
+    GUN?: IWuXueCard[];
+    BIAN?: IWuXueCard[];
+    AN?: IWuXueCard[];
+    QING?: IWuXueCard[];
 }
