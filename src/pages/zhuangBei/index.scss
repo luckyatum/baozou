@@ -1,4 +1,6 @@
 .index {
+    display: flex;
+    flex-direction: column;
     height: 100vh;
     font-size: 0.6rem;
     background-color: #efeff4;

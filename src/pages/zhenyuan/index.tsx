@@ -98,6 +98,30 @@ export default function Index() {
     setWuXueList(newWuXueList)
   }
 
+  // 处理武学自身修改等级
+  function handleOwnLevelChange(id: string, level: number) {
+    const keys = Object.keys(wuXueListWithType)
+
+    for (const key of keys) {
+      const wList: IWuXueCard[] = wuXueListWithType[key]
+      const wIndex = wList.findIndex(w => w.Id === id)
+
+      if (wIndex !== -1) {
+        // 找到武学id存在的位置
+        const [...newWList] = wList
+        newWList[wIndex].Level = level
+
+        // 更新整个数组真元值
+        wuXueListWithType[key] = handleWuXueList(wuXueList.filter(w => w.Type === key), activeLevel)
+
+        // 重新计算总真元值
+        setTotalZhenYuan(calcTotalZhenYuan(wuXueListWithType))
+        setWuXueListWithType(JSON.parse(JSON.stringify(wuXueListWithType)))
+        break
+      }
+    }
+  }
+
   return (
     <View className='zhenyuan'>
       <AtButton type='primary' onClick={() => setIsShowDrawer(true)}>选择门派</AtButton>
@@ -113,7 +137,15 @@ export default function Index() {
         {
           Object.keys(wuXueListWithType).map((key: wuXueType) => {
             const value = wuXueListWithType[key] || []
-            return value.length > 0 ? <WuXueCard key={key} wuXueKey={key} wuXueCardList={value} onDel={handleDel} /> : null
+            return value.length > 0
+              ? <WuXueCard
+                  key={key}
+                  wuXueKey={key}
+                  wuXueCardList={value}
+                  onDel={handleDel}
+                  onLevelChange={handleOwnLevelChange}
+                />
+              : null
           })
         }
       </View>

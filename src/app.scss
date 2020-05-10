@@ -19,25 +19,8 @@
     }
 }
 
-.at-tabs {
-    display: flex;
-    flex-direction: column;
-    height: 100vh;
-}
-.at-tabs__body {
-    flex-grow: 1;
-}
-.at-tabs--scroll .at-tabs__header {
-    overflow-x: unset;
-}
-
 .at-tag {
     padding: 0 20px;
-}
-
-at-tabs-pane {
-    display: flex;
-    height: 100%;
 }
 at-icon {
     flex: 1;
@@ -47,9 +30,4 @@ at-icon {
         width: 100%;
         height: 100%;
     }
-}
-zhen-yuan {
-    display: flex;
-    flex-direction: column;
-    height: 100vh;
 }
