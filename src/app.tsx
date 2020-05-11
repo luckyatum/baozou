@@ -25,20 +25,20 @@ class App extends Component {
       navigationBarTextStyle: 'black',
       backgroundColor: '#efeff4'
     },
-    tabBar: {
-      color: "#626567",
-      selectedColor: "#6e9eea",
-      backgroundColor: "#FBFBFB",
-      borderStyle: "white",
-      list: [{
-        pagePath: "pages/zhenYuan/index",
-        text: "真元"
-      },
-      {
-        pagePath: "pages/zhuangBei/index",
-        text: "装备"
-      }]
-    }
+    // tabBar: {
+    //   color: "#626567",
+    //   selectedColor: "#6e9eea",
+    //   backgroundColor: "#FBFBFB",
+    //   borderStyle: "white",
+    //   list: [{
+    //     pagePath: "pages/zhenYuan/index",
+    //     text: "真元"
+    //   },
+    //   {
+    //     pagePath: "pages/zhuangBei/index",
+    //     text: "装备"
+    //   }]
+    // }
   }
 
   render () {

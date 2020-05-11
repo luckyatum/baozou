@@ -15,10 +15,11 @@ export default function Index() {
   const [ menPaiIndex, setMenPaiIndex ] = useState<number>(0) // 当前激活的门派
   const [ sexIndex, setSexIndex ] = useState<number>(0) // 当前激活的性别
   const [ wuXueList, setWuXueList ] = useState<IWuXue[]>([]) // 左侧栏选择的武学列表
+  const [ wuXueId, setWuXueId ] = useState<[string, boolean]>(['', false]) // [最后一次操作数组变化时候的武学id, 操作是增加还是删除]
   const [ wuXueListWithType, setWuXueListWithType ] = useState<IWuXueType>({}) // 已选中武学中根据武学类型区分的列表
   const [ isShowDrawer, setIsShowDrawer ] = useState<boolean>(false) // 是否展示左侧抽屉
 
-  // 等级以及武学变化之后，更新武学类型列表和总真元值
+  // 选择武学变化，重新计算所有武学的真元值
   useEffect(() => {
     const wLength = wuXueList.length
     if (wLength === 0) {
@@ -27,6 +28,59 @@ export default function Index() {
       return
     }
 
+    const [ id, isAdd ] = wuXueId
+    const { Title, MenPai, Type, NanDu } = wuXueList.find(w => w.Id === id) as IWuXue
+    const w: IWuXueCard[] = wuXueListWithType[Type] as IWuXueCard[]
+    if (isAdd) {
+      // 新增武学,计算新的武学的真元
+      const zhenYuan = calcZhenYuan(activeLevel, Number(NanDu))
+      // 找到主要武学
+      const oldMainW = w.find(w => w.IsMain) as IWuXueCard
+      const { ZhenYuan: mainZhenYuan, Id: mainId } = oldMainW
+      // 比较两者真元
+      if (mainZhenYuan > zhenYuan) {
+        // 主武学仍然不变
+        w.push({
+          Id: id,
+          Title,
+          MenPai,
+          NanDu,
+          Level: activeLevel,
+          ZhenYuan: zhenYuan / 2,
+          IsMain: false
+        })
+      } else {
+        // 主武学变为新武学，然后旧的主武学数据变化
+        w.push({
+          Id: id,
+          Title,
+          MenPai,
+          NanDu,
+          Level: activeLevel,
+          ZhenYuan: zhenYuan,
+          IsMain: true
+        })
+
+        oldMainW.IsMain = false
+        oldMainW.ZhenYuan = mainZhenYuan / 2
+      }
+    } else {
+      // 删除武学，先删除对应card数组的元素，再重新计算真元
+      const [{ IsMain: delIsMain }] = w.splice(w.findIndex(w => w.Id === id), 1)
+
+      if (delIsMain) {
+        // 删除的是主武学，则重新找一个主武学，逻辑是找当前真元最高的
+        
+      }
+    }
+
+    // 重新计算总真元值
+    setTotalZhenYuan(calcTotalZhenYuan(wuXueListWithType))
+    setWuXueListWithType(wuXueListWithType)
+  }, [ wuXueList ])
+
+  // 等级变化，统一全部更新
+  useEffect(() => {
     // 重新计算真元值
     const newWuXueListWithType: IWuXueType = {}
     for (const type of Object.keys(wuXueTypeMap)) {
@@ -36,24 +90,19 @@ export default function Index() {
     // 重新计算总真元值
     setTotalZhenYuan(calcTotalZhenYuan(newWuXueListWithType))
     setWuXueListWithType(newWuXueListWithType)
-  }, [ wuXueList, activeLevel ])
+  }, [ activeLevel ])
 
   // 武学选择后触发
   function handleWuXueSelect(wuXue: IWuXue, isActive: boolean) {
-    // 深拷贝数组
-    const [ ...newWuXueList ] = wuXueList
-
     if (isActive) {
       // 新增加武学
-      newWuXueList.push(wuXue)
-
+      wuXueList.push(wuXue)
     } else {
       // 删除对应武学
-      _.remove(newWuXueList, (n: IWuXue) => {
-        return n.Id === wuXue.Id
-      })
+      handleDel(wuXue.Id)
     }
-    setWuXueList(newWuXueList)
+    setWuXueId([wuXue.Id, isActive])
+    setWuXueList([ ...wuXueList ])
   }
 
   // 等级更新触发
@@ -88,14 +137,13 @@ export default function Index() {
 
   // 处理删除武学事件
   function handleDel(id: string) {
-    const [ ...newWuXueList ] = wuXueList
-
     // 删除对应武学
-    _.remove(newWuXueList, (n: IWuXue) => {
+    _.remove(wuXueList, (n: IWuXue) => {
       return n.Id === id
     })
 
-    setWuXueList(newWuXueList)
+    setWuXueId([id, false])
+    setWuXueList([ ...wuXueList ])
   }
 
   // 处理武学自身修改等级
@@ -112,7 +160,7 @@ export default function Index() {
         newWList[wIndex].Level = level
 
         // 更新整个数组真元值
-        wuXueListWithType[key] = handleWuXueList(wuXueList.filter(w => w.Type === key), activeLevel)
+        wuXueListWithType[key] = 
 
         // 重新计算总真元值
         setTotalZhenYuan(calcTotalZhenYuan(wuXueListWithType))
