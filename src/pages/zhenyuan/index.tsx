@@ -35,22 +35,10 @@ export default function Index() {
       // 新增武学,计算新的武学的真元
       const zhenYuan = calcZhenYuan(activeLevel, Number(NanDu))
       // 找到主要武学
-      const oldMainW = w.find(w => w.IsMain) as IWuXueCard
-      const { ZhenYuan: mainZhenYuan, Id: mainId } = oldMainW
-      // 比较两者真元
-      if (mainZhenYuan > zhenYuan) {
-        // 主武学仍然不变
-        w.push({
-          Id: id,
-          Title,
-          MenPai,
-          NanDu,
-          Level: activeLevel,
-          ZhenYuan: zhenYuan / 2,
-          IsMain: false
-        })
-      } else {
-        // 主武学变为新武学，然后旧的主武学数据变化
+      const oldMainW = w.find(w => w.IsMain)
+
+      if (!oldMainW) {
+        // 没有旧武学，直接成为主武学
         w.push({
           Id: id,
           Title,
@@ -60,9 +48,35 @@ export default function Index() {
           ZhenYuan: zhenYuan,
           IsMain: true
         })
+      } else {
+        const { ZhenYuan: mainZhenYuan, Id: mainId } = oldMainW
+        // 比较两者真元
+        if (mainZhenYuan > zhenYuan) {
+          // 主武学仍然不变
+          w.push({
+            Id: id,
+            Title,
+            MenPai,
+            NanDu,
+            Level: activeLevel,
+            ZhenYuan: zhenYuan / 2,
+            IsMain: false
+          })
+        } else {
+          // 主武学变为新武学，然后旧的主武学数据变化
+          w.push({
+            Id: id,
+            Title,
+            MenPai,
+            NanDu,
+            Level: activeLevel,
+            ZhenYuan: zhenYuan,
+            IsMain: true
+          })
 
-        oldMainW.IsMain = false
-        oldMainW.ZhenYuan = mainZhenYuan / 2
+          oldMainW.IsMain = false
+          oldMainW.ZhenYuan = mainZhenYuan / 2
+        }
       }
     } else {
       // 删除武学，先删除对应card数组的元素，再重新计算真元
@@ -152,15 +166,57 @@ export default function Index() {
 
     for (const key of keys) {
       const wList: IWuXueCard[] = wuXueListWithType[key]
-      const wIndex = wList.findIndex(w => w.Id === id)
+      const curW = wList.find(w => w.Id === id)
 
-      if (wIndex !== -1) {
+      if (curW) {
         // 找到武学id存在的位置
-        const [...newWList] = wList
-        newWList[wIndex].Level = level
+        const curMainW = wList.find(w => w.IsMain) as IWuXueCard
+        curW.Level = level
+
+        if (curMainW.Id === curW.Id) {
+          // 修改的就是主武学的等级
+          const [...newWList] = wList
+
+          // 将其真元减半之后，判断是否还是最高真元的
+          const curZhenYuan = calcZhenYuan(level, Number(curW.NanDu))
+          curW.ZhenYuan = curZhenYuan / 2
+
+          const highestZhenYuanW = newWList.sort((pre, cur) => Number(cur.ZhenYuan) - Number(pre.ZhenYuan))[0]
+
+          const { ZhenYuan: highestZhenYuan } = highestZhenYuanW
+          if (curW.Id === highestZhenYuanW.Id) {
+            // 还是最高
+            curW.ZhenYuan = curZhenYuan
+          } else {
+            // 不是最高了
+            curW.IsMain = false
+            curW.ZhenYuan = curZhenYuan / 2
+
+            // 最高的的变为主武学
+            const oldHighestZhenYuanW = wList.find(w => w.Id === highestZhenYuanW.Id) as IWuXueCard
+            oldHighestZhenYuanW.IsMain = true
+            oldHighestZhenYuanW.ZhenYuan = highestZhenYuan * 2
+          }
+        } else {
+          // 修改的不是主武学等级，需要重新选出主武学，只要判断修改等级后是否真元比当前主武学多
+          const zhenYuan = calcZhenYuan(level, Number(curW.NanDu))
+          const { ZhenYuan: mainZhenYuan } = curMainW
+
+          if (mainZhenYuan > zhenYuan) {
+            // 主武学不变
+            curW.ZhenYuan = zhenYuan / 2
+          } else {
+            // 主武学变了
+            curW.ZhenYuan = zhenYuan
+            curW.IsMain = true
+
+            curMainW.IsMain = false
+            curMainW.ZhenYuan = mainZhenYuan / 2
+          }
+        }
 
         // 更新整个数组真元值
-        wuXueListWithType[key] = 
+        wuXueListWithType[key] = wList
 
         // 重新计算总真元值
         setTotalZhenYuan(calcTotalZhenYuan(wuXueListWithType))
