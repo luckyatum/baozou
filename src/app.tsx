@@ -15,6 +15,7 @@ class App extends Component {
    */
   config: Config = {
     pages: [
+      'pages/jiChu/index',
       'pages/zhenYuan/index',
       'pages/zhuangBei/index'
     ],

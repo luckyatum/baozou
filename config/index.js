@@ -21,10 +21,10 @@ const config = {
       'transform-class-properties',
       'transform-object-rest-spread',
       ['transform-runtime', {
-        'helpers': false,
-        'polyfill': false,
-        'regenerator': true,
-        'moduleName': 'babel-runtime'
+        "helpers": false,
+        "polyfill": false,
+        "regenerator": true,
+        "moduleName": 'babel-runtime'
       }]
     ]
   },

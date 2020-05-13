@@ -1,0 +1,23 @@
+@import '../../mixin';
+.jichu {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  overflow: hidden;
+  .jichu-form-item {
+    padding: 40px 0 0;
+    font-size: 0.8rem;
+    background-color: $bgColor;
+    color: #6d6d72;
+    .jichu-form-header {
+      padding: 0 10px;
+      margin-bottom: 10px;
+    }
+    .jichu-result {
+      margin: 6px 10px;
+      font-size: 0.6rem;
+      color: $tipColor;
+      text-align: right;
+    }
+  }
+}

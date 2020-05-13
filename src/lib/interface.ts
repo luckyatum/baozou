@@ -40,3 +40,47 @@ export interface IWuXueType {
     AN?: IWuXueCard[];
     QING?: IWuXueCard[];
 }
+
+// 学习潜能接口
+export interface ILearnForm {
+    wuXing?: string;
+    nanDu?: string;
+    daiMai?: string;
+    start?: string;
+    end?: string;
+}
+
+// 每日潜能接口
+export interface IDailyForm {
+    highestLevel?: string;
+    fuDi?: string;
+}
+
+// 每日潜能对象
+export interface IDaily {
+    baoXiang?: number;
+    qiRen?: number;
+    yaBiao?: number;
+    siDa?: number;
+    weiHuShan?: number;
+    haiDao?: number;
+    anHao?: number;
+    weiTuo?: number;
+    total?: number;
+    huiWeiHuShan?: number;
+    huiHaiDao?: number;
+    huiFeiGe?: number;
+    huiTotal?: number;
+}
+
+// 日常次数枚举
+export enum riChangEnum { baoXiang=10, qiRen=10, yaBiao=1, siDa=1, weiHuShan=3, haiDao=3, anHao=1, weiTuo=5, huiWeiHuShan=1, huiHaiDao=1, huiFeiGe=1 }
+
+// 福地对象
+export interface IFuDi {
+    baoXiang?: string;
+    huanChen?: number;
+    qianNeng?: number;
+    jingYan?: number;
+    yinLiang?: number;
+}
