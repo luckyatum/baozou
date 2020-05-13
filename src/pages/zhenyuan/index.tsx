@@ -4,9 +4,10 @@ import { AtDrawer, AtButton, AtTag } from 'taro-ui'
 import * as _ from 'lodash'
 import ZhenYuanSidebar from '../../components/ZhenYuanSidebar'
 import WuXueCard from '../../components/WuXueCard'
+import Header from '../../components/Header'
 import { IWuXueType, IWuXue, wuXueType, IWuXueCard } from '../../lib/interface'
 import { levelList, wuXueTypeMap } from '../../lib/constant'
-import { getMainWuXueIndex, calcZhenYuan, calcTotalZhenYuan } from '../../lib/util'
+import { getMainWuXueIndex, calcZhenYuan, calcTotalZhenYuan, findHighestZhenYuanW } from '../../lib/util'
 import './index.scss'
 
 export default function Index() {
@@ -29,9 +30,10 @@ export default function Index() {
     }
 
     const [ id, isAdd ] = wuXueId
-    const { Title, MenPai, Type, NanDu } = wuXueList.find(w => w.Id === id) as IWuXue
-    const w: IWuXueCard[] = wuXueListWithType[Type] as IWuXueCard[]
+
     if (isAdd) {
+      const { Title, MenPai, Type, NanDu } = wuXueList.find(w => w.Id === id) as IWuXue
+      const w = wuXueListWithType[Type] || []
       // 新增武学,计算新的武学的真元
       const zhenYuan = calcZhenYuan(activeLevel, Number(NanDu))
       // 找到主要武学
@@ -80,11 +82,20 @@ export default function Index() {
       }
     } else {
       // 删除武学，先删除对应card数组的元素，再重新计算真元
-      const [{ IsMain: delIsMain }] = w.splice(w.findIndex(w => w.Id === id), 1)
+      const wList = getWListWithTypeById(id) as IWuXueCard[]
+      const [{ IsMain: delIsMain }] = wList.splice(wList.findIndex(delW => delW.Id === id), 1)
 
       if (delIsMain) {
         // 删除的是主武学，则重新找一个主武学，逻辑是找当前真元最高的
-        
+        const highestMainW = findHighestZhenYuanW(wList)
+
+        if (highestMainW) {
+          const { ZhenYuan: highestZhenYuan } = highestMainW
+            // 最高的变为主武学
+            const curMainW = wList.find(w => w.Id === highestMainW.Id) as IWuXueCard
+            curMainW.IsMain = true
+            curMainW.ZhenYuan = highestZhenYuan * 2
+        }
       }
     }
 
@@ -105,6 +116,18 @@ export default function Index() {
     setTotalZhenYuan(calcTotalZhenYuan(newWuXueListWithType))
     setWuXueListWithType(newWuXueListWithType)
   }, [ activeLevel ])
+
+  // 通过id获取武学card对象
+  function getWListWithTypeById(id: string): IWuXueCard[] | void {
+    for (const key of Object.keys(wuXueListWithType)) {
+      const wList: IWuXueCard[] = wuXueListWithType[key]
+
+      const w = wList.find(w => w.Id === id)
+      if (w) {
+        return wList
+      }
+    }
+  }
 
   // 武学选择后触发
   function handleWuXueSelect(wuXue: IWuXue, isActive: boolean) {
@@ -175,13 +198,11 @@ export default function Index() {
 
         if (curMainW.Id === curW.Id) {
           // 修改的就是主武学的等级
-          const [...newWList] = wList
-
           // 将其真元减半之后，判断是否还是最高真元的
           const curZhenYuan = calcZhenYuan(level, Number(curW.NanDu))
           curW.ZhenYuan = curZhenYuan / 2
 
-          const highestZhenYuanW = newWList.sort((pre, cur) => Number(cur.ZhenYuan) - Number(pre.ZhenYuan))[0]
+          const highestZhenYuanW = findHighestZhenYuanW(wList) as IWuXueCard
 
           const { ZhenYuan: highestZhenYuan } = highestZhenYuanW
           if (curW.Id === highestZhenYuanW.Id) {
@@ -228,7 +249,8 @@ export default function Index() {
 
   return (
     <View className='zhenyuan'>
-      <AtButton type='primary' onClick={() => setIsShowDrawer(true)}>选择门派</AtButton>
+      <Header />
+      <AtButton className='zhenyuan-btn' type='primary' onClick={() => setIsShowDrawer(true)}>选择门派</AtButton>
       <View className='zhenyuan-level-container'>
         {
           levelList.map(level => <AtTag type='primary' key={level} active={level === activeLevel} name={String(level)} onClick={handleLevelChange}>{level}</AtTag>)

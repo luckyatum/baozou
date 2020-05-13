@@ -26,3 +26,10 @@ export function calcTotalZhenYuan(wuXueListWithType: IWuXueType): number {
     }
     return sum
 }
+
+// 找到最高真元的武学
+export function findHighestZhenYuanW(wList: IWuXueCard[]): IWuXueCard|null {
+    if (wList.length === 0) return null
+    const [...newWList] = wList
+    return newWList.sort((pre, cur) => Number(cur.ZhenYuan) - Number(pre.ZhenYuan))[0]
+}
