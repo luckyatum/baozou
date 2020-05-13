@@ -15,7 +15,7 @@ class App extends Component {
    */
   config: Config = {
     pages: [
-      'pages/zhenyuan/index',
+      'pages/zhenYuan/index',
       'pages/zhuangBei/index'
     ],
     window: {
@@ -31,7 +31,7 @@ class App extends Component {
     //   backgroundColor: "#FBFBFB",
     //   borderStyle: "white",
     //   list: [{
-    //     pagePath: "pages/zhenyuan/index",
+    //     pagePath: "pages/zhenYuan/index",
     //     text: "真元"
     //   },
     //   {
