@@ -84,3 +84,12 @@ export interface IFuDi {
     jingYan?: number;
     yinLiang?: number;
 }
+
+// 拼接对象
+export enum enumJoint { TOTAL, HUI_TOTAL, FEI_TOTAL, FUDI }
+
+// 等级对应真元表单
+export interface ILevelZhenYuan {
+    level?: string;
+    nanDu?: string;
+}

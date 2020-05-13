@@ -1,4 +1,4 @@
-import { IWuXueType, IWuXueCard } from './interface'
+import { IWuXueType, IWuXueCard, enumJoint, IDaily, IFuDi, riChangEnum } from './interface'
 import { IWuXue } from 'src/lib/interface'
 import { zhenYuanBase } from "./constant"
 
@@ -52,6 +52,7 @@ export function calcDaily(highestLevel: number, x: number): number {
 }
 
 // 计算委托
+// 公式来自@神机堂，http://bz.hpeng.cn
 export function calcWeiTuo(highestLevel: number, x: number): number {
     if (highestLevel >= 0 && highestLevel <= 99) {
         return 5200 * x
@@ -85,4 +86,52 @@ export function calcWeiTuo(highestLevel: number, x: number): number {
     } else {
         return 0
     }
+}
+
+// 返回拼接字符串
+export function jointQianNeng(type: enumJoint, daily: IDaily, fuDi: IFuDi): string {
+    // 非会员展示
+    const feiTotal =
+    `   寻宝箱*${riChangEnum.baoXiang}: ${daily.baoXiang || 0}
+        奇人异事*${riChangEnum.qiRen}: ${daily.qiRen || 0}
+        押镖*${riChangEnum.yaBiao}: ${daily.yaBiao || 0}
+        四大恶人*${riChangEnum.siDa}: ${daily.siDa || 0}
+        威虎山(困难)*${riChangEnum.weiHuShan}: ${daily.weiHuShan || 0}
+        海盗副本(困难)*${riChangEnum.haiDao}: ${daily.haiDao || 0}
+        暗号*${riChangEnum.anHao}: ${daily.anHao || 0}
+        五星委托*${riChangEnum.weiTuo}: ${daily.weiTuo || 0}
+        非会员合计: ${daily.total}\n
+    `
+    // 会员展示
+    const huiTotal =
+    `   威虎山(困难)*${riChangEnum.huiWeiHuShan}: ${daily.huiWeiHuShan || 0}
+        海盗副本(困难)*${riChangEnum.huiHaiDao}: ${daily.huiHaiDao || 0}
+        飞鸽传书*${riChangEnum.huiFeiGe}: ${daily.huiFeiGe || 0}
+        会员合计: ${(daily.total || 0) + (daily.huiTotal || 0)}\n
+    `
+
+    // 福地展示
+    const fuDiTotal =
+    `   幻境之尘: ${fuDi.huanChen || 0}
+        银两: ${fuDi.yinLiang || 0}
+        潜能: ${fuDi.qianNeng || 0}
+        江湖经验: ${fuDi.jingYan || 0}
+        宝箱合计: \n${fuDi.baoXiang && fuDi.baoXiang.split(',').join('\n')}
+    `
+    switch (type) {
+        case enumJoint.TOTAL:
+            return feiTotal + huiTotal + fuDiTotal
+        case enumJoint.HUI_TOTAL:
+            return feiTotal + huiTotal
+        case enumJoint.FEI_TOTAL:
+            return feiTotal
+        case enumJoint.FUDI:
+            return fuDiTotal
+    }
+}
+
+// 根据详细等级计算真元
+// 公式来自@神机堂，http://bz.hpeng.cn
+export function calcZhenYuanByLevel(level: number, nanDu: number): number {
+    return Math.trunc(3 * level * level * level * nanDu / 10127)
 }

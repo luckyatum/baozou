@@ -1,10 +1,9 @@
 import Taro, { useState, useEffect } from '@tarojs/taro'
 import { View, Text } from '@tarojs/components'
 import { AtDrawer, AtButton, AtTag } from 'taro-ui'
-import * as _ from 'lodash'
+import { remove } from 'lodash'
 import ZhenYuanSidebar from '../../components/ZhenYuanSidebar'
 import WuXueCard from '../../components/WuXueCard'
-import Header from '../../components/Header'
 import { IWuXueType, IWuXue, wuXueType, IWuXueCard } from '../../lib/interface'
 import { levelList, wuXueTypeMap } from '../../lib/constant'
 import { getMainWuXueIndex, calcZhenYuan, calcTotalZhenYuan, findHighestZhenYuanW } from '../../lib/util'
@@ -175,7 +174,7 @@ export default function Index() {
   // 处理删除武学事件
   function handleDel(id: string) {
     // 删除对应武学
-    _.remove(wuXueList, (n: IWuXue) => {
+    remove(wuXueList, (n: IWuXue) => {
       return n.Id === id
     })
 
@@ -249,7 +248,7 @@ export default function Index() {
 
   return (
     <View className='zhenyuan'>
-      <Header />
+      <View className='baozou-header'>暴走英雄坛计算器</View>
       <AtButton className='zhenyuan-btn' type='primary' onClick={() => setIsShowDrawer(true)}>选择门派</AtButton>
       <View className='zhenyuan-level-container'>
         {
