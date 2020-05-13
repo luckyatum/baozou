@@ -93,3 +93,11 @@ export interface ILevelZhenYuan {
     level?: string;
     nanDu?: string;
 }
+
+// 装备接口
+export interface IZhuangBei {
+    Id: string;
+    Des: string;
+    Name: string;
+    ShuXing: string;
+}

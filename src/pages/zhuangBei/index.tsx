@@ -1,27 +1,54 @@
-import Taro, { Component } from '@tarojs/taro'
+import Taro, { useState, useEffect } from '@tarojs/taro'
 import { View } from '@tarojs/components'
-
+import { AtMessage } from 'taro-ui'
+import * as _ from 'lodash'
 import './index.scss'
+import { IZhuangBei } from '../../lib/interface'
+import { Api } from '../../lib/api'
+import {  } from '../../lib/util'
 
-export default class Index extends Component<{}, {}> {
+export default function Index() {
+  const [ zId, setZId ] = useState<string>('64')
+  const [ zhuanBeiList, setZhuangBeiList ] = useState<IZhuangBei[]>([])
+  const [ isLoading, setIsLoading ] = useState<boolean>(false)
 
-  constructor (props) {
-    super(props)
-  }
+  useEffect(() => {
+    getZhuangBei()
+  }, [ zId ])
 
-  // 装备
-  getEquipment() {
-    Taro.request({
-      // url: 'https://cors-anywhere.herokuapp.com/http://bz.hpeng.cn/Ajax/AjaxGetZB.aspx?CId=64&t=1588844199131',
-      url: 'http://bz.hpeng.cn/Ajax/AjaxGetZB.aspx?CId=64&t=1588844199131',
-      success: (res) => {
-        console.log(res.data)
-        this.setState({ equipmentList: res.data })
+  // 获取装备
+  async function getZhuangBei() {
+    try {
+      setIsLoading(true)
+      // 请求福地数据
+      const res = await Taro.request({
+        url: Api.getZhuangBei,
+        method: 'GET',
+        data: { CId: zId , t: Date.now() }
+      })
+      if (res && res.statusCode === 200) {
+        setZhuangBeiList(res.data)
+      } else {
+        Taro.atMessage({
+          message: res.errMsg|| '请求失败，再尝试一下吧~',
+          type: 'error'
+        })
       }
-    })
-  }
+    } catch (err) {
 
-  render () {
-    return <View>装备</View>
+    } finally {
+      setIsLoading(false)
+    }
   }
+  return (
+    <View className='zhuang-bei'>
+      <View className='baozou-header'>暴走英雄坛计算器</View>
+
+      <AtMessage />
+    </View>
+  )
+}
+
+Index.config = {
+  navigationBarTitleText: '装备',
 }

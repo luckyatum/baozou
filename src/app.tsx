@@ -15,9 +15,9 @@ class App extends Component {
    */
   config: Config = {
     pages: [
+      'pages/zhuangBei/index',
       'pages/jiChu/index',
       'pages/zhenYuan/index',
-      'pages/zhuangBei/index'
     ],
     window: {
       backgroundTextStyle: 'light',
