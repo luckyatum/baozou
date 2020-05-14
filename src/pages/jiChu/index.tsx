@@ -1,4 +1,4 @@
-import Taro, { useState, useEffect, showModal } from '@tarojs/taro'
+import Taro, { useState, showModal, showLoading, hideLoading } from '@tarojs/taro'
 import { View } from '@tarojs/components'
 import { AtForm, AtInput, AtButton, AtMessage, AtCard, AtList, AtListItem } from 'taro-ui'
 import * as _ from 'lodash'
@@ -6,6 +6,7 @@ import './index.scss'
 import { ILearnForm, IDailyForm, IDaily, riChangEnum, IFuDi, enumJoint, ILevelZhenYuan } from '../../lib/interface'
 import { Api } from '../../lib/api'
 import { calcDaily, jointQianNeng, calcZhenYuanByLevel } from '../../lib/util'
+import { loadingProps } from '../../lib/constant'
 
 export default function Index() {
   const [ learnForm, setLearnForm ] = useState<ILearnForm>({
@@ -13,7 +14,6 @@ export default function Index() {
     nanDu: '1',
   })
   const [ learn, setLearn ] = useState<string>('')
-  const [ isLearnLoading, setIsLearnLoading ] = useState<boolean>(false)
   const [ lZhenYuanForm, setLZhenYuanForm ] = useState<ILevelZhenYuan>({})
   const [ lZhenYuan, setLZhenYuan ] = useState<string>('')
   const [ dailyForm, setDailyForm ] = useState<IDailyForm>({})
@@ -24,7 +24,7 @@ export default function Index() {
   async function handleLearnSubmit() {
     try {
       const { wuXing: wx = '', nanDu: nd = '', daiMai: dm = '', start = '', end = '' } = learnForm
-      setIsLearnLoading(true)
+      showLoading(loadingProps)
       const res = await Taro.request({
         url: Api.getLearnQianNeng,
         method: 'GET',
@@ -44,7 +44,7 @@ export default function Index() {
         type: 'error',
       })
     } finally {
-      setIsLearnLoading(false)
+      hideLoading()
     }
   }
 
@@ -59,7 +59,7 @@ export default function Index() {
     if (!dailyValidate(dailyForm)) return false
 
     try {
-      setIsLearnLoading(true)
+      showLoading(loadingProps)
       const { highestLevel, fuDi } = dailyForm as { highestLevel: string; fuDi: string; }
       // 计算日常数据
       const daily = getDailyObj(Number(highestLevel))
@@ -86,7 +86,7 @@ export default function Index() {
         type: 'error',
       })
     } finally {
-      setIsLearnLoading(false)
+      hideLoading()
     }
   }
 
@@ -189,7 +189,7 @@ export default function Index() {
             value={learnForm.end || ''}
             onChange={(value) => setLearnForm(Object.assign(learnForm, { end: value }))}
           />
-          <AtButton formType='submit' type='primary' loading={isLearnLoading}>计算</AtButton>
+          <AtButton formType='submit' type='primary'>计算</AtButton>
         </AtForm>
         <View className='jichu-result'>所需潜能：{learn}</View>
       </View>

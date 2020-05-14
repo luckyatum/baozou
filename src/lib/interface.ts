@@ -94,6 +94,12 @@ export interface ILevelZhenYuan {
     nanDu?: string;
 }
 
+// 装备类型接口
+export interface IZhuangBeiType {
+    id: string;
+    name: string;
+}
+
 // 装备接口
 export interface IZhuangBei {
     Id: string;

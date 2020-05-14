@@ -1,3 +1,4 @@
+@import '../../mixin';
 .zhenyuan {
     display: flex;
     flex-direction: column;
@@ -18,7 +19,7 @@
         text-align: right;
         .zhenyuan-preview-text {
             font-size: 30px;
-            color: red;
+            color: $tipColor;
         }
     }
     .zhenyuan-wuxue-container {

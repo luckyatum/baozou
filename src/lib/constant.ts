@@ -1,4 +1,4 @@
-import { IWuXue, wuXueType } from './interface';
+import { IWuXue, wuXueType, IZhuangBeiType } from './interface';
 
 // 门派列表
 export const menPaiList: string[] = ['丐帮', '少林', '太极', '五毒', '逍遥', '雪山', '血刀', '伊贺', '玉女']
@@ -30,6 +30,30 @@ export const wuXueTypeMap = {
     AN: '暗器',
     QING: '轻功'
 }
+
+// 装备类型列表
+export const zhuangBeiTypeList: IZhuangBeiType[] = [
+    { id: '64', name: '拳套' },
+    { id: '65', name: '刀' },
+    { id: '66', name: '剑' },
+    { id: '67', name: '棍' },
+    { id: '68', name: '鞭' },
+    { id: '69', name: '暗器' },
+    { id: '70', name: '衣服' },
+    { id: '71', name: '头饰' },
+    { id: '73', name: '护腕' },
+    { id: '72', name: '鞋子' },
+    { id: '74', name: '项链' },
+    { id: '75', name: '戒指' },
+    { id: '77', name: '锻造' },
+    { id: '79', name: '血药' },
+    { id: '80', name: '内药' },
+    { id: '81', name: '灵药' },
+    { id: '82', name: '毒药' },
+    { id: '83', name: '炸药' },
+    { id: '84', name: '丹药' },
+    { id: '76', name: '其他' }
+]
 
 // 武学列表
 export const allWuXueList: IWuXue[] = [
@@ -635,3 +659,7 @@ export const allWuXueList: IWuXue[] = [
     }
 ]
 
+// 加载中话术
+export const loadingProps = {
+    title: '马不停蹄中...'
+}

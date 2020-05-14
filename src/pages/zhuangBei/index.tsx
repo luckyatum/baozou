@@ -1,16 +1,16 @@
-import Taro, { useState, useEffect } from '@tarojs/taro'
+import Taro, { useState, useEffect, showLoading, hideLoading } from '@tarojs/taro'
 import { View } from '@tarojs/components'
 import { AtMessage } from 'taro-ui'
 import * as _ from 'lodash'
 import './index.scss'
 import { IZhuangBei } from '../../lib/interface'
 import { Api } from '../../lib/api'
-import {  } from '../../lib/util'
+import { zhuangBeiTypeList, loadingProps } from '../../lib/constant'
 
 export default function Index() {
   const [ zId, setZId ] = useState<string>('64')
-  const [ zhuanBeiList, setZhuangBeiList ] = useState<IZhuangBei[]>([])
-  const [ isLoading, setIsLoading ] = useState<boolean>(false)
+  const [ zhuangBeiList, setZhuangBeiList ] = useState<IZhuangBei[]>([])
+  const [ prop, setProp ] = useState<IZhuangBei|null>(null)
 
   useEffect(() => {
     getZhuangBei()
@@ -19,7 +19,7 @@ export default function Index() {
   // 获取装备
   async function getZhuangBei() {
     try {
-      setIsLoading(true)
+      showLoading(loadingProps)
       // 请求福地数据
       const res = await Taro.request({
         url: Api.getZhuangBei,
@@ -35,15 +35,39 @@ export default function Index() {
         })
       }
     } catch (err) {
-
+      Taro.atMessage({
+        message: err.message|| '请求失败，再尝试一下吧~',
+        type: 'error'
+      })
     } finally {
-      setIsLoading(false)
+      hideLoading()
     }
   }
+
   return (
     <View className='zhuang-bei'>
       <View className='baozou-header'>暴走英雄坛计算器</View>
-
+      <View className='zhuang-bei-intro'>
+        <View className='zhuang-bei-name'>{ prop && prop.Name }</View>
+        <View className='zhuang-bei-prop'>{ prop && prop.ShuXing }</View>
+        <View className='zhuang-bei-desc'>{ prop && prop.Des }</View>
+      </View>
+      <View className='zhuang-bei-wrapper'>
+        <View className='zhuang-bei-left'>
+          {
+            zhuangBeiTypeList.map(z => <View className={`zhuang-bei-type ${zId === z.id ? 'active' : ''}`} key={z.id} onClick={() => setZId(z.id)}>{z.name}</View>)
+          }
+        </View>
+        <View className='zhuang-bei-right'>
+          {
+            zhuangBeiList.map(z => (
+            <View key={z.Id} className='props-item' onClick={() => setProp(z)}>
+              <View className='props-name'>{z.Name}</View>
+              <View className='props-text'>{z.ShuXing}</View>
+            </View>))
+          }
+        </View>
+      </View>
       <AtMessage />
     </View>
   )
