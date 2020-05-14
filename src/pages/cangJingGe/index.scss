@@ -1,0 +1,78 @@
+@import '../../mixin';
+
+.zhuang-bei {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    font-size: 1rem;
+    background-color: $bgColor;
+    overflow: hidden;
+    .zhuang-bei-intro {
+        padding: 20px;
+        color: $subColor;
+        .zhuang-bei-head {
+            display: flex;
+            align-items: center;
+            .zhuang-bei-name {
+                font-size: 1.2rem;
+                font-weight: bold;
+                color: $darkColor;
+            }
+            .zhuang-bei-prop {
+                margin-left: 30px;
+            }
+        }
+        .zhuang-bei-desc {
+            margin: 16px 0;
+        }
+    }
+    .zhuang-bei-wrapper {
+        flex: 1;
+        display: flex;
+        background-color: #fff;
+        color: $subColor;
+        overflow: hidden;
+        .zhuang-bei-left {
+            display: flex;
+            flex-direction: column;
+            width: 130px;
+            overflow-x: hidden;
+            overflow-y: auto;
+            .zhuang-bei-type {
+                padding: 16px;
+                border-right: 1px solid $borderColor;
+                border-bottom: 1px solid $borderColor;
+                &.active {
+                    background-color: $primaryColor;
+                    color: $lightColor;
+                }
+            }
+        }
+        .zhuang-bei-right {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            overflow-x: hidden;
+            overflow-y: auto;
+            .props-item {
+                position: relative;
+                padding: 16px;
+                border-bottom: 1px solid $borderColor;
+                &.active {
+                    background-color: $primaryColor;
+                    color: $lightColor;
+                    .props-text {
+                        color: $lightColor;
+                    }
+                }
+                .props-text {
+                    position: absolute;
+                    top: 20px;
+                    right: 20px;
+                    font-size: 0.8rem;
+                    color: $subColor;
+                }
+            }
+        }
+    }
+}

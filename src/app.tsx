@@ -15,6 +15,7 @@ class App extends Component {
    */
   config: Config = {
     pages: [
+      'pages/cangJingGe/index',
       'pages/zhuangBei/index',
       'pages/jiChu/index',
       'pages/zhenYuan/index',
@@ -41,6 +42,10 @@ class App extends Component {
       },
       {
         pagePath: "pages/zhuangBei/index",
+        text: "装备"
+      },
+      {
+        pagePath: "pages/cangJingGe/index",
         text: "装备"
       }]
     }

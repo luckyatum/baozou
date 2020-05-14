@@ -94,8 +94,13 @@ export interface ILevelZhenYuan {
     nanDu?: string;
 }
 
-// 装备类型接口
-export interface IZhuangBeiType {
+// 加载中接口
+export interface ILoading {
+    title: string;
+}
+
+// 搜索类型接口
+export interface ISearchType {
     id: string;
     name: string;
 }
@@ -107,3 +112,4 @@ export interface IZhuangBei {
     Name: string;
     ShuXing: string;
 }
+

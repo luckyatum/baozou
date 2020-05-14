@@ -1,4 +1,4 @@
-import { IWuXue, wuXueType, IZhuangBeiType } from './interface';
+import { IWuXue, wuXueType, ISearchType, ILoading } from './interface';
 
 // 门派列表
 export const menPaiList: string[] = ['丐帮', '少林', '太极', '五毒', '逍遥', '雪山', '血刀', '伊贺', '玉女']
@@ -32,7 +32,7 @@ export const wuXueTypeMap = {
 }
 
 // 装备类型列表
-export const zhuangBeiTypeList: IZhuangBeiType[] = [
+export const zhuangBeiTypeList: ISearchType[] = [
     { id: '64', name: '拳套' },
     { id: '65', name: '刀' },
     { id: '66', name: '剑' },
@@ -660,9 +660,18 @@ export const allWuXueList: IWuXue[] = [
 ]
 
 // 加载中话术
-export const loadingProps = {
+export const loadingProps: ILoading = {
     title: '马不停蹄中...'
 }
 
 // 缓存公用key
-export const commonPrefix = 'OuXiaoBai::BaoZouYingXiongTan::'
+export const commonPrefix: string = 'OuXiaoBai::BaoZouYingXiongTan::'
+
+// 藏经阁搜索列表
+export const cangSearchList: ISearchType[] = [
+    { id: '92', name: '萌新攻略' },
+    { id: '93', name: '门派攻略' },
+    { id: '94', name: '任务攻略' },
+    { id: '109', name: '轮回攻略' },
+    { id: '127', name: '暴走武录' }
+]
