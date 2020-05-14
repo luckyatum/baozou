@@ -1,7 +1,6 @@
 import Taro, { useState, showModal, showLoading, hideLoading } from '@tarojs/taro'
 import { View } from '@tarojs/components'
 import { AtForm, AtInput, AtButton, AtMessage, AtCard, AtList, AtListItem } from 'taro-ui'
-import * as _ from 'lodash'
 import './index.scss'
 import { ILearnForm, IDailyForm, IDaily, riChangEnum, IFuDi, enumJoint, ILevelZhenYuan } from '../../lib/interface'
 import { Api } from '../../lib/api'

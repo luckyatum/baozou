@@ -1,16 +1,19 @@
 import Taro, { useState, useEffect, showLoading, hideLoading } from '@tarojs/taro'
 import { View } from '@tarojs/components'
 import { AtMessage } from 'taro-ui'
-import * as _ from 'lodash'
 import './index.scss'
 import { IZhuangBei } from '../../lib/interface'
 import { Api } from '../../lib/api'
 import { zhuangBeiTypeList, loadingProps } from '../../lib/constant'
 
+const STORAGE_PREFIX = 'zhuangBei::'
+
 export default function Index() {
   const [ zId, setZId ] = useState<string>('64')
   const [ zhuangBeiList, setZhuangBeiList ] = useState<IZhuangBei[]>([])
   const [ prop, setProp ] = useState<IZhuangBei|null>(null)
+
+  console.log(11111)
 
   useEffect(() => {
     getZhuangBei()

@@ -663,3 +663,6 @@ export const allWuXueList: IWuXue[] = [
 export const loadingProps = {
     title: '马不停蹄中...'
 }
+
+// 缓存公用key
+export const commonPrefix = 'OuXiaoBai::BaoZouYingXiongTan::'
