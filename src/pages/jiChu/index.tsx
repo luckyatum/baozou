@@ -151,7 +151,7 @@ export default function Index() {
           <AtInput
             name='value'
             title='人物悟性'
-            type='text'
+            type='number'
             placeholder='请输入人物悟性'
             value={learnForm.wuXing || ''}
             onChange={(value) => setLearnForm(Object.assign(learnForm, { wuXing: value }))}
@@ -159,7 +159,7 @@ export default function Index() {
           <AtInput
             name='value'
             title='武学难度'
-            type='text'
+            type='number'
             placeholder='请输入武学难度'
             value={learnForm.nanDu || ''}
             onChange={(value) => setLearnForm(Object.assign(learnForm, { nanDu: value }))}
@@ -167,7 +167,7 @@ export default function Index() {
           <AtInput
             name='value'
             title='带脉减免'
-            type='text'
+            type='number'
             placeholder='请输入带脉减免'
             value={learnForm.daiMai || ''}
             onChange={(value) => setLearnForm(Object.assign(learnForm, { daiMai: value }))}
@@ -175,7 +175,7 @@ export default function Index() {
           <AtInput
             name='value'
             title='起始等级'
-            type='text'
+            type='number'
             placeholder='请输入起始等级'
             value={learnForm.start || ''}
             onChange={(value) => setLearnForm(Object.assign(learnForm, { start: value }))}
@@ -183,7 +183,7 @@ export default function Index() {
           <AtInput
             name='value'
             title='目标等级'
-            type='text'
+            type='number'
             placeholder='请输入目标等级'
             value={learnForm.end || ''}
             onChange={(value) => setLearnForm(Object.assign(learnForm, { end: value }))}
@@ -200,7 +200,7 @@ export default function Index() {
           <AtInput
             name='value'
             title='武学等级'
-            type='text'
+            type='number'
             placeholder='请输入武学等级'
             value={lZhenYuanForm.level || ''}
             onChange={(value) => setLZhenYuanForm(Object.assign(lZhenYuanForm, { level: value }))}
@@ -208,7 +208,7 @@ export default function Index() {
           <AtInput
             name='value'
             title='武学难度'
-            type='text'
+            type='number'
             placeholder='请输入武学难度'
             value={lZhenYuanForm.nanDu || ''}
             onChange={(value) => setLZhenYuanForm(Object.assign(lZhenYuanForm, { nanDu: value }))}
