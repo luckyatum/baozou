@@ -100,7 +100,7 @@ export function jointQianNeng(type: enumJoint, daily: IDaily, fuDi: IFuDi): stri
         海盗副本(困难)*${riChangEnum.haiDao}: ${daily.haiDao || 0}
         暗号*${riChangEnum.anHao}: ${daily.anHao || 0}
         五星委托*${riChangEnum.weiTuo}: ${daily.weiTuo || 0}
-        非会员合计: ${daily.total}\n
+        非会员合计: ${daily.total || 0}\n
     `
     // 会员展示
     const huiTotal =
@@ -116,7 +116,7 @@ export function jointQianNeng(type: enumJoint, daily: IDaily, fuDi: IFuDi): stri
         银两: ${fuDi.yinLiang || 0}
         潜能: ${fuDi.qianNeng || 0}
         江湖经验: ${fuDi.jingYan || 0}
-        宝箱合计: \n${fuDi.baoXiang && fuDi.baoXiang.split(',').join('\n')}
+        宝箱合计: \n${fuDi.baoXiang ? fuDi.baoXiang.split(',').join('\n') : ''}
     `
     switch (type) {
         case enumJoint.TOTAL:
