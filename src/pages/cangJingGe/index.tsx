@@ -6,6 +6,7 @@ import { ICang } from '../../lib/interface'
 import { Api } from '../../lib/api'
 import { cangSearchList, loadingProps, toastDurationConfig } from '../../lib/constant'
 import { Store } from '../../lib/store'
+import { cangMockList } from '../../lib/mock'
 
 const STORAGE_PREFIX = 'cangJingGe::'
 const cangStore = new Store<ICang[]>({ prefix: STORAGE_PREFIX })
@@ -20,13 +21,13 @@ export default function Index() {
       setCangList(storeList)
     } else {
       // 重新获取
-      getCangList()
+      // getCangList()
+      setCangList(cangMockList)
     }
   }, [ zId ])
 
   // 获取装备
   async function getCangList() {
-    console.log('getCangList', zId)
     try {
       showLoading(loadingProps)
       // 请求藏经阁数据
@@ -36,11 +37,10 @@ export default function Index() {
         dataType: '其他',
         data: { FId: zId , t: Date.now() }
       })
-      console.log('res', res)
       hideLoading()
       if (res && res.statusCode === 200) {
         // 缓存结果
-        // cangStore.set(zId, res.data)
+        cangStore.set(zId, res.data)
         setCangList(res.data)
       } else {
         showToast({
@@ -50,7 +50,6 @@ export default function Index() {
         })
       }
     } catch (err) {
-      console.log('err', err)
       hideLoading()
       showToast({
         title: err.message|| '请求失败，再尝试一下吧~',
@@ -68,16 +67,14 @@ export default function Index() {
           cangSearchList.map(z => <View className={`cang-type ${zId === z.id ? 'active' : ''}`} key={z.id} onClick={() => setZId(z.id)}>{z.name}</View>)
         }
       </View>
-      {/* <View className='cang-wrapper'>
+      <View className='cang-wrapper'>
         {
           cangList.map(c => (
-          <AtCard key={c.Id} className='cang-item' onClick={() => {}}>
-            <View className='cang-title'>{c.Title}</View>
+          <AtCard key={c.Id} className='cang-item' title={c.Title} onClick={() => {}}>
             <View className='cang-content'>{c.Text.substr(0, 50)}</View>
-
           </AtCard>))
         }
-      </View> */}
+      </View>
     </View>
   )
 }

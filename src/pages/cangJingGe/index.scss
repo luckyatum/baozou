@@ -4,13 +4,13 @@
     display: flex;
     flex-direction: column;
     height: 100vh;
-    font-size: 1rem;
+    font-size: 30px;
     background-color: $bgColor;
     overflow: hidden;
     .cang-select-container {
         display: flex;
         flex-wrap: wrap;
-        padding: 40px;
+        padding: 20px;
         margin: 20px 0;
         background-color: $lightColor;
         .cang-type {
@@ -22,8 +22,16 @@
                 background-color: $primaryColor;
                 color: $lightColor;
             }
+        }
+    }
+    .cang-wrapper {
+        overflow-x: hidden;
+        overflow-y: auto;
+        .cang-item {
+            margin-bottom: 20px;
             .cang-content {
-                // @include multi-hide;
+                color: $subColor;
+                @include limit-width;
             }
         }
     }

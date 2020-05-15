@@ -6,13 +6,9 @@ $borderColor: #EAEAEA;
 $bgColor: #efeff4;
 $lightColor: #fff;
 
-// @mixin multi-hide($height: 40px, $line: 2) {
-//   height: $height;
-//   overflow: hidden;
-//   box-sizing: border-box;
-//   display: -webkit-box;
-//   word-break: break-all;
-//   text-overflow: ellipsis;
-//   -webkit-box-orient: vertical;
-//   -webkit-line-clamp: $line;
-// }
+@mixin limit-width($width: '100%') {
+  width: $width;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
