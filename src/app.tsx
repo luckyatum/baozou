@@ -15,10 +15,10 @@ class App extends Component {
    */
   config: Config = {
     pages: [
-      'pages/cangJingGe/index',
-      'pages/zhuangBei/index',
-      'pages/jiChu/index',
       'pages/zhenYuan/index',
+      'pages/jiChu/index',
+      'pages/zhuangBei/index',
+      'pages/cangJingGe/index',
     ],
     window: {
       backgroundTextStyle: 'light',
