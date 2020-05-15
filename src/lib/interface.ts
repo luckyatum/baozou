@@ -113,3 +113,13 @@ export interface IZhuangBei {
     ShuXing: string;
 }
 
+// 藏经阁数据接口
+export interface ICang {
+    CreateDate: string;
+    FId: string;
+    Id: string;
+    Sort: string;
+    Text: string;
+    Title: string;
+    imgs: string;
+}

@@ -55,6 +55,23 @@ export const zhuangBeiTypeList: ISearchType[] = [
     { id: '76', name: '其他' }
 ]
 
+// 加载中话术
+export const loadingProps: ILoading = {
+    title: '马不停蹄中...'
+}
+
+// 缓存公用key
+export const commonPrefix: string = 'OuXiaoBai::BaoZouYingXiongTan::'
+
+// 藏经阁搜索列表
+export const cangSearchList: ISearchType[] = [
+    { id: '92', name: '萌新攻略' },
+    { id: '93', name: '门派攻略' },
+    { id: '94', name: '任务攻略' },
+    { id: '109', name: '轮回攻略' },
+    { id: '127', name: '暴走武录' }
+]
+
 // 武学列表
 export const allWuXueList: IWuXue[] = [
     {
@@ -659,19 +676,5 @@ export const allWuXueList: IWuXue[] = [
     }
 ]
 
-// 加载中话术
-export const loadingProps: ILoading = {
-    title: '马不停蹄中...'
-}
-
-// 缓存公用key
-export const commonPrefix: string = 'OuXiaoBai::BaoZouYingXiongTan::'
-
-// 藏经阁搜索列表
-export const cangSearchList: ISearchType[] = [
-    { id: '92', name: '萌新攻略' },
-    { id: '93', name: '门派攻略' },
-    { id: '94', name: '任务攻略' },
-    { id: '109', name: '轮回攻略' },
-    { id: '127', name: '暴走武录' }
-]
+// toast延迟
+export const toastDurationConfig = 2000
