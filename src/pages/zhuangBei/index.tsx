@@ -6,6 +6,7 @@ import { IZhuangBei } from '../../lib/interface'
 import { Api } from '../../lib/api'
 import { zhuangBeiTypeList, loadingProps } from '../../lib/constant'
 import { Store } from '../../lib/store'
+import { Request } from '../../lib/request'
 
 const STORAGE_PREFIX = 'zhuangBei::'
 const zhuangBeiStore = new Store<IZhuangBei[]>({ prefix: STORAGE_PREFIX })
@@ -30,7 +31,7 @@ export default function Index() {
     try {
       showLoading(loadingProps)
       // 请求福地数据
-      const res = await Taro.request({
+      const res = await Request({
         url: Api.getZhuangBei,
         method: 'GET',
         data: { CId: zId , t: Date.now() }

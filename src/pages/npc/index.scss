@@ -1,0 +1,40 @@
+@import '../../mixin';
+
+.npc {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    font-size: 30px;
+    background-color: $bgColor;
+    overflow: hidden;
+    .npc-search {
+        display: flex;
+        flex-direction: column;
+        margin: 30px 20px;
+        padding: 20px;
+        border-radius: 10px;
+        background-color: $lightColor;
+        overflow: hidden;
+        .npc-preview {
+            flex: 1;
+            overflow-x: hidden;
+            overflow-y: auto;
+        }
+    }
+    .npc-wrapper {
+        flex: 1;
+        overflow-x: hidden;
+        overflow-y: auto;
+        .cang-item {
+            margin-bottom: 20px;
+            .cang-content {
+                color: $subColor;
+                @include limit-width;
+            }
+        }
+        .npc-img {
+            width: 100%;
+            display: block;
+        }
+    }
+}

@@ -123,3 +123,20 @@ export interface ICang {
     Title: string;
     imgs: string;
 }
+
+// 搜索预览接口
+export interface IPreview {
+    Id: string;
+    JianMa: string;
+    Name: string;
+    PinYin: string;
+}
+
+// npc接口
+export interface INpc {
+    Id: string;
+    JianMa: string;
+    Name: string;
+    PinYin: string;
+    Text: string;
+}

@@ -15,10 +15,11 @@ class App extends Component {
    */
   config: Config = {
     pages: [
+      'pages/npc/index',
+      'pages/cangJingGe/index',
       'pages/zhenYuan/index',
       'pages/jiChu/index',
       'pages/zhuangBei/index',
-      'pages/cangJingGe/index',
     ],
     window: {
       backgroundTextStyle: 'light',
@@ -27,28 +28,32 @@ class App extends Component {
       navigationBarTextStyle: 'black',
       backgroundColor: '#efeff4'
     },
-    // tabBar: {
-    //   color: "#626567",
-    //   selectedColor: "#6e9eea",
-    //   backgroundColor: "#FBFBFB",
-    //   borderStyle: "white",
-    //   list: [{
-    //     pagePath: "pages/zhenYuan/index",
-    //     text: "真元"
-    //   },
-    //   {
-    //     pagePath: "pages/jiChu/index",
-    //     text: "基础"
-    //   },
-    //   {
-    //     pagePath: "pages/zhuangBei/index",
-    //     text: "装备"
-    //   },
-    //   {
-    //     pagePath: "pages/cangJingGe/index",
-    //     text: "藏经阁"
-    //   }]
-    // }
+    tabBar: {
+      color: "#626567",
+      selectedColor: "#6e9eea",
+      backgroundColor: "#FBFBFB",
+      borderStyle: "white",
+      list: [{
+        pagePath: "pages/zhenYuan/index",
+        text: "真元"
+      },
+      {
+        pagePath: "pages/jiChu/index",
+        text: "基础"
+      },
+      {
+        pagePath: "pages/zhuangBei/index",
+        text: "装备"
+      },
+      {
+        pagePath: "pages/cangJingGe/index",
+        text: "藏经阁"
+      },
+      {
+        pagePath: "pages/npc/index",
+        text: "NPC查找"
+      }]
+    }
   }
 
   render () {

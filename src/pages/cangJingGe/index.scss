@@ -25,6 +25,7 @@
         }
     }
     .cang-wrapper {
+        flex: 1;
         overflow-x: hidden;
         overflow-y: auto;
         .cang-item {
@@ -32,6 +33,24 @@
             .cang-content {
                 color: $subColor;
                 @include limit-width;
+            }
+        }
+    }
+    .cang-drawer {
+        padding: 20px 0;
+        .cang-drawer-title {
+            padding: 0 30px 20px;
+            font-size: 30px;
+            border-bottom: 1px solid $borderColor;
+            font-weight: bold;
+        }
+        .cang-drawer-content {
+            padding: 20px;
+            color: $subColor;
+            .no-data {
+                margin-top: 20px;
+                text-align: center;
+                color: $subColor
             }
         }
     }

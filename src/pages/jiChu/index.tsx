@@ -6,6 +6,7 @@ import { ILearnForm, IDailyForm, IDaily, riChangEnum, IFuDi, enumJoint, ILevelZh
 import { Api } from '../../lib/api'
 import { calcDaily, jointQianNeng, calcZhenYuanByLevel } from '../../lib/util'
 import { loadingProps } from '../../lib/constant'
+import { Request } from '../../lib/request'
 
 export default function Index() {
   const [ learnForm, setLearnForm ] = useState<ILearnForm>({
@@ -24,7 +25,7 @@ export default function Index() {
     try {
       const { wuXing: wx = '', nanDu: nd = '', daiMai: dm = '', start = '', end = '' } = learnForm
       showLoading(loadingProps)
-      const res = await Taro.request({
+      const res = await Request({
         url: Api.getLearnQianNeng,
         method: 'GET',
         data: { wx, nd, dm, start, end, t: Date.now() }
@@ -64,7 +65,7 @@ export default function Index() {
       const daily = getDailyObj(Number(highestLevel))
 
       // 请求福地数据
-      const res = await Taro.request({
+      const res = await Request({
         url: Api.getFuDi,
         method: 'GET',
         data: { Lv: fuDi , t: Date.now() }

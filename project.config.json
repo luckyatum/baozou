@@ -1,13 +1,16 @@
 {
   "miniprogramRoot": "./dist",
   "projectname": "baozou",
-  "description": "暴走英雄坛计算器(神机堂)——小程序版",
-  "appid": "touristappid",
+  "description": "暴走英雄坛新版计算器",
+  "appid": "wx18315f2e00e293fa",
   "setting": {
     "urlCheck": true,
     "es6": false,
     "postcss": false,
     "minified": false
   },
-  "compileType": "miniprogram"
+  "compileType": "miniprogram",
+  "networkTimeout": {
+    "request": 30000
+  }
 }
