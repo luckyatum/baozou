@@ -7,6 +7,7 @@ import { Api } from '../../lib/api'
 import { calcDaily, jointQianNeng, calcZhenYuanByLevel } from '../../lib/util'
 import { loadingProps } from '../../lib/constant'
 import { Request } from '../../lib/request'
+import Header from '../../components/Header'
 
 export default function Index() {
   const [ learnForm, setLearnForm ] = useState<ILearnForm>({
@@ -143,7 +144,7 @@ export default function Index() {
 
   return (
     <View className='jichu'>
-      <View className='baozou-header'>暴走英雄坛计算器</View>
+      <Header />
       <View className='jichu-form-item'>
         <View className='jichu-form-header'>技能学习潜能计算（基础武学难度是1）</View>
         <AtForm

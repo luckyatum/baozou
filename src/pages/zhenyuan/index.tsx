@@ -8,6 +8,7 @@ import { IWuXueType, IWuXue, wuXueType, IWuXueCard } from '../../lib/interface'
 import { levelList, wuXueTypeMap } from '../../lib/constant'
 import { getMainWuXueIndex, calcZhenYuan, calcTotalZhenYuan, findHighestZhenYuanW } from '../../lib/util'
 import './index.scss'
+import Header from '../../components/Header'
 
 export default function Index() {
   const [ totalZhenYuan, setTotalZhenYuan ] = useState<number>(0) // 总真元
@@ -248,7 +249,7 @@ export default function Index() {
 
   return (
     <View className='zhenyuan'>
-      <View className='baozou-header'>暴走英雄坛计算器</View>
+      <Header />
       <AtButton className='zhenyuan-btn' type='primary' onClick={() => setIsShowDrawer(true)}>选择门派</AtButton>
       <View className='zhenyuan-level-container'>
         {

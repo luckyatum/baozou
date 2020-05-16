@@ -7,6 +7,7 @@ import { Api } from '../../lib/api'
 import { cangSearchList, loadingProps, toastDurationConfig } from '../../lib/constant'
 import { Store } from '../../lib/store'
 import { Request } from '../../lib/request'
+import Header from '../../components/Header'
 
 const STORAGE_PREFIX = 'cangJingGe::'
 const cangStore = new Store<ICang[]|ICang>({ prefix: STORAGE_PREFIX })
@@ -127,7 +128,7 @@ export default function Index() {
 
   return (
     <View className='cang'>
-      <View className='baozou-header'>暴走英雄坛计算器</View>
+      <Header />
       <View className='cang-select-container'>
         {
           cangSearchList.map(z => <View className={`cang-type ${zId === z.id ? 'active' : ''}`} key={z.id} onClick={() => setZId(z.id)}>{z.name}</View>)

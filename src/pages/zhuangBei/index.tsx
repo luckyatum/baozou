@@ -7,6 +7,7 @@ import { Api } from '../../lib/api'
 import { zhuangBeiTypeList, loadingProps } from '../../lib/constant'
 import { Store } from '../../lib/store'
 import { Request } from '../../lib/request'
+import Header from '../../components/Header'
 
 const STORAGE_PREFIX = 'zhuangBei::'
 const zhuangBeiStore = new Store<IZhuangBei[]>({ prefix: STORAGE_PREFIX })
@@ -58,7 +59,7 @@ export default function Index() {
 
   return (
     <View className='zhuang-bei'>
-      <View className='baozou-header'>暴走英雄坛计算器</View>
+      <Header />
       <View className='zhuang-bei-intro'>
         <View className='zhuang-bei-head'>
           <View className='zhuang-bei-name'>{ prop && prop.Name }</View>

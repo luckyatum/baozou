@@ -23,6 +23,7 @@
     }
     .npc-wrapper {
         flex: 1;
+        padding: 0 20px;
         overflow-x: hidden;
         overflow-y: auto;
         .cang-item {
@@ -34,7 +35,7 @@
         }
         .npc-img {
             width: 100%;
-            display: block;
+            height: 100%;
         }
     }
 }

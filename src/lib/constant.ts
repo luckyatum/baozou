@@ -57,7 +57,7 @@ export const zhuangBeiTypeList: ISearchType[] = [
 
 // 加载中话术
 export const loadingProps: ILoading = {
-    title: '马不停蹄中...'
+    title: '马不停蹄中...',
 }
 
 // 缓存公用key
