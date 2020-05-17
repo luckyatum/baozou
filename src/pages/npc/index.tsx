@@ -1,4 +1,4 @@
-import Taro, { useState, useEffect, showLoading, hideLoading, showToast, arrayBufferToBase64 } from '@tarojs/taro'
+import Taro, { useState, useEffect, showLoading, hideLoading, showToast, arrayBufferToBase64, useShareAppMessage } from '@tarojs/taro'
 import { View, RichText, Image } from '@tarojs/components'
 import { AtSearchBar, AtList, AtListItem } from 'taro-ui'
 import './index.scss'
@@ -22,6 +22,13 @@ export default function Index() {
       setPreviewList([])
     }
   }, [ sId ])
+
+  useShareAppMessage(() => {
+    return {
+      title: '来这里寻找那位你心仪的ta吧',
+      path: '/pages/npc/index'
+    }
+  })
 
   // 搜索预览列表
   async function getPreviewList() {

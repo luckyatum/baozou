@@ -1,4 +1,4 @@
-import Taro, { useState, showModal, showLoading, hideLoading } from '@tarojs/taro'
+import Taro, { useState, showModal, showLoading, hideLoading, useShareAppMessage } from '@tarojs/taro'
 import { View } from '@tarojs/components'
 import { AtForm, AtInput, AtButton, AtMessage, AtCard, AtList, AtListItem } from 'taro-ui'
 import './index.scss'
@@ -21,6 +21,12 @@ export default function Index() {
   const [ daily, setDaily ] = useState<IDaily>({})
   const [ fuDi, setFuDi ] = useState<IFuDi>({})
 
+  useShareAppMessage(() => {
+    return {
+      title: '只用一步就可轻松算出你的每日潜能，来试试吧',
+      path: '/pages/jiChu/index'
+    }
+  })
   // 提交计算
   async function handleLearnSubmit() {
     try {

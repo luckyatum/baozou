@@ -1,5 +1,5 @@
-import Taro, { useState, useEffect, showLoading, hideLoading, showToast } from '@tarojs/taro'
-import { View, RichText, Image } from '@tarojs/components'
+import Taro, { useState, useEffect, showLoading, hideLoading, showToast, useShareAppMessage } from '@tarojs/taro'
+import { View, RichText } from '@tarojs/components'
 import { AtCard, AtDrawer } from 'taro-ui'
 import './index.scss'
 import { ICang } from '../../lib/interface'
@@ -48,6 +48,13 @@ export default function Index() {
       setCId('')
     }
   }, [ isShowDrawer ])
+
+  useShareAppMessage(() => {
+    return {
+      title: '各种门派攻略，武功秘籍，尽在藏经阁中',
+      path: '/pages/cangJingGe/index'
+    }
+  })
 
   // 获取藏经阁列表
   async function getCangList() {

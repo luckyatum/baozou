@@ -1,4 +1,4 @@
-import Taro, { useState, useEffect, showLoading, hideLoading } from '@tarojs/taro'
+import Taro, { useState, useEffect, showLoading, hideLoading, useShareAppMessage } from '@tarojs/taro'
 import { View } from '@tarojs/components'
 import { AtMessage } from 'taro-ui'
 import './index.scss'
@@ -26,6 +26,13 @@ export default function Index() {
       getZhuangBei()
     }
   }, [ zId ])
+
+  useShareAppMessage(() => {
+    return {
+      title: '来这里看看各种神兵利器吧',
+      path: '/pages/zhuangBei/index'
+    }
+  })
 
   // 获取装备
   async function getZhuangBei() {
