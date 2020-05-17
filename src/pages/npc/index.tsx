@@ -136,7 +136,7 @@ export default function Index() {
       <View className='npc-search'>
         <AtSearchBar
           value={searchVal}
-          placeholder='请输入地名、npc名字或拼音简写，不区分大小写'
+          placeholder='npc名字或拼音简写，不区分大小写'
           onChange={(value) => setSearchVal(value)}
           onActionClick={getPreviewList}
         />

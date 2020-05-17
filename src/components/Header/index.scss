@@ -1,7 +1,9 @@
 @import '../../mixin';
 
 .baozou-header {
-  display: block;
+  position: relative;
+  display: flex;
+  justify-content: center;
   padding: 10px 0;
   font-size: 1.2rem;
   font-weight: 500;
@@ -10,4 +12,9 @@
   background-color: $primaryColor;
   color: $lightColor;
   white-space: nowrap;
+  .baozou-icon {
+    position: absolute;
+    top: 4px;
+    right: 20px;
+  }
 }
