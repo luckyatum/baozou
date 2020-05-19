@@ -159,7 +159,7 @@ export default function Index() {
           <AtInput
             name='value'
             title='武学难度'
-            type='number'
+            type='text'
             placeholder='请输入武学难度'
             value={learnForm.nanDu || ''}
             onChange={(value) => setLearnForm(Object.assign(learnForm, { nanDu: value }))}
@@ -208,7 +208,7 @@ export default function Index() {
           <AtInput
             name='value'
             title='武学难度'
-            type='number'
+            type='text'
             placeholder='请输入武学难度'
             value={lZhenYuanForm.nanDu || ''}
             onChange={(value) => setLZhenYuanForm(Object.assign(lZhenYuanForm, { nanDu: value }))}
