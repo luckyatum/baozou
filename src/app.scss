@@ -1,14 +1,2 @@
 @import './taro.scss';
 @import './mixin.scss';
-
-.baozou-header {
-    display: block;
-    padding: 10px 0;
-    font-size: 1.2rem;
-    font-weight: 500;
-    line-height: 2rem;
-    text-align: center;
-    background-color: $primaryColor;
-    color: $lightColor;
-    white-space: nowrap;
-}

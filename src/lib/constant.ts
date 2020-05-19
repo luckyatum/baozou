@@ -57,7 +57,7 @@ export const zhuangBeiTypeList: ISearchType[] = [
 
 // 加载中话术
 export const loadingProps: ILoading = {
-    title: '马不停蹄中...'
+    title: '马不停蹄中...',
 }
 
 // 缓存公用key
@@ -161,6 +161,14 @@ export const allWuXueList: IWuXue[] = [
         Type: wuXueType.QUAN,
         NanDu: "1.8",
         Sex: "男"
+    },
+    {
+        Id: "120",
+        Title: "千蛛万毒手",
+        MenPai: "五毒",
+        Type: wuXueType.QUAN,
+        NanDu: "1.8",
+        Sex: "男,女"
     },
     {
         Id: "116",
@@ -315,6 +323,14 @@ export const allWuXueList: IWuXue[] = [
         Sex: "男,女"
     },
     {
+        Id: "127",
+        Title: "血魔刀法",
+        MenPai: "血刀",
+        Type: wuXueType.DAO,
+        NanDu: "1.8",
+        Sex: "男,女"
+    },
+    {
         Id: "29",
         Title: "太极剑",
         MenPai: "太极",
@@ -390,6 +406,22 @@ export const allWuXueList: IWuXue[] = [
         Id: "88",
         Title: "流星蝴蝶剑",
         MenPai: "江湖",
+        Type: wuXueType.JIAN,
+        NanDu: "1.8",
+        Sex: "男,女"
+    },
+    {
+        Id: "128",
+        Title: "全真剑法",
+        MenPai: "江湖",
+        Type: wuXueType.JIAN,
+        NanDu: "1.2",
+        Sex: "男,女"
+    },
+    {
+        Id: "129",
+        Title: "飞雪剑决",
+        MenPai: "雪山",
         Type: wuXueType.JIAN,
         NanDu: "1.8",
         Sex: "男,女"

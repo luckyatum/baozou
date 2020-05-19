@@ -1,4 +1,4 @@
-import Taro, { useState, useEffect, showLoading, hideLoading } from '@tarojs/taro'
+import Taro, { useState, useEffect, showLoading, hideLoading, useShareAppMessage } from '@tarojs/taro'
 import { View } from '@tarojs/components'
 import { AtMessage } from 'taro-ui'
 import './index.scss'
@@ -6,6 +6,8 @@ import { IZhuangBei } from '../../lib/interface'
 import { Api } from '../../lib/api'
 import { zhuangBeiTypeList, loadingProps } from '../../lib/constant'
 import { Store } from '../../lib/store'
+import { Request } from '../../lib/request'
+import Header from '../../components/Header'
 
 const STORAGE_PREFIX = 'zhuangBei::'
 const zhuangBeiStore = new Store<IZhuangBei[]>({ prefix: STORAGE_PREFIX })
@@ -25,12 +27,19 @@ export default function Index() {
     }
   }, [ zId ])
 
+  useShareAppMessage(() => {
+    return {
+      title: '来这里看看各种神兵利器吧',
+      path: '/pages/zhuangBei/index'
+    }
+  })
+
   // 获取装备
   async function getZhuangBei() {
     try {
       showLoading(loadingProps)
       // 请求福地数据
-      const res = await Taro.request({
+      const res = await Request({
         url: Api.getZhuangBei,
         method: 'GET',
         data: { CId: zId , t: Date.now() }
@@ -57,7 +66,7 @@ export default function Index() {
 
   return (
     <View className='zhuang-bei'>
-      <View className='baozou-header'>暴走英雄坛计算器</View>
+      <Header />
       <View className='zhuang-bei-intro'>
         <View className='zhuang-bei-head'>
           <View className='zhuang-bei-name'>{ prop && prop.Name }</View>

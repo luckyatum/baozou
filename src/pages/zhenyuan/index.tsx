@@ -1,4 +1,4 @@
-import Taro, { useState, useEffect } from '@tarojs/taro'
+import Taro, { useState, useEffect, useShareAppMessage } from '@tarojs/taro'
 import { View, Text } from '@tarojs/components'
 import { AtDrawer, AtButton, AtTag } from 'taro-ui'
 import { remove } from 'lodash'
@@ -8,6 +8,7 @@ import { IWuXueType, IWuXue, wuXueType, IWuXueCard } from '../../lib/interface'
 import { levelList, wuXueTypeMap } from '../../lib/constant'
 import { getMainWuXueIndex, calcZhenYuan, calcTotalZhenYuan, findHighestZhenYuanW } from '../../lib/util'
 import './index.scss'
+import Header from '../../components/Header'
 
 export default function Index() {
   const [ totalZhenYuan, setTotalZhenYuan ] = useState<number>(0) // 总真元
@@ -115,6 +116,13 @@ export default function Index() {
     setTotalZhenYuan(calcTotalZhenYuan(newWuXueListWithType))
     setWuXueListWithType(newWuXueListWithType)
   }, [ activeLevel ])
+
+  useShareAppMessage(() => {
+    return {
+      title: '快来看看你躺了多少真元吧',
+      path: '/pages/zhenYuan/index'
+    }
+  })
 
   // 通过id获取武学card对象
   function getWListWithTypeById(id: string): IWuXueCard[] | void {
@@ -248,7 +256,7 @@ export default function Index() {
 
   return (
     <View className='zhenyuan'>
-      <View className='baozou-header'>暴走英雄坛计算器</View>
+      <Header />
       <AtButton className='zhenyuan-btn' type='primary' onClick={() => setIsShowDrawer(true)}>选择门派</AtButton>
       <View className='zhenyuan-level-container'>
         {

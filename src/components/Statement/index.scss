@@ -1,0 +1,22 @@
+@import '../../mixin';
+
+.statement {
+  padding: 20px;
+  height: 100vh;
+  font-size: 30px;
+  background-color: $bgColor;
+  color: $darkColor;
+  white-space: pre-wrap;
+  box-sizing: border-box;
+  .statement-header {
+    margin-bottom: 30px;
+    font-weight: bold;
+  }
+  .main-title {
+    font-weight: bold;
+  }
+  .list-container {
+    font-size: 24px;
+    color: $subColor;
+  }
+}

@@ -1,4 +1,4 @@
-import Taro, { useState, showModal, showLoading, hideLoading } from '@tarojs/taro'
+import Taro, { useState, showModal, showLoading, hideLoading, useShareAppMessage } from '@tarojs/taro'
 import { View } from '@tarojs/components'
 import { AtForm, AtInput, AtButton, AtMessage, AtCard, AtList, AtListItem } from 'taro-ui'
 import './index.scss'
@@ -6,6 +6,8 @@ import { ILearnForm, IDailyForm, IDaily, riChangEnum, IFuDi, enumJoint, ILevelZh
 import { Api } from '../../lib/api'
 import { calcDaily, jointQianNeng, calcZhenYuanByLevel } from '../../lib/util'
 import { loadingProps } from '../../lib/constant'
+import { Request } from '../../lib/request'
+import Header from '../../components/Header'
 
 export default function Index() {
   const [ learnForm, setLearnForm ] = useState<ILearnForm>({
@@ -19,12 +21,18 @@ export default function Index() {
   const [ daily, setDaily ] = useState<IDaily>({})
   const [ fuDi, setFuDi ] = useState<IFuDi>({})
 
+  useShareAppMessage(() => {
+    return {
+      title: '只用一步就可轻松算出你的每日潜能，来试试吧',
+      path: '/pages/jiChu/index'
+    }
+  })
   // 提交计算
   async function handleLearnSubmit() {
     try {
       const { wuXing: wx = '', nanDu: nd = '', daiMai: dm = '', start = '', end = '' } = learnForm
       showLoading(loadingProps)
-      const res = await Taro.request({
+      const res = await Request({
         url: Api.getLearnQianNeng,
         method: 'GET',
         data: { wx, nd, dm, start, end, t: Date.now() }
@@ -64,7 +72,7 @@ export default function Index() {
       const daily = getDailyObj(Number(highestLevel))
 
       // 请求福地数据
-      const res = await Taro.request({
+      const res = await Request({
         url: Api.getFuDi,
         method: 'GET',
         data: { Lv: fuDi , t: Date.now() }
@@ -142,7 +150,7 @@ export default function Index() {
 
   return (
     <View className='jichu'>
-      <View className='baozou-header'>暴走英雄坛计算器</View>
+      <Header />
       <View className='jichu-form-item'>
         <View className='jichu-form-header'>技能学习潜能计算（基础武学难度是1）</View>
         <AtForm
