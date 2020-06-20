@@ -138,9 +138,9 @@ export default function Index() {
         type: 'error'
       })
       return false
-    } else if (!fuDi || (Number(fuDi) < 0) || Number(fuDi) > 50) {
+    } else if (!fuDi || (Number(fuDi) < 0) || Number(fuDi) > 70) {
       Taro.atMessage({
-        message: '请输入0-50福地层数~',
+        message: '请输入0-70福地层数~',
         type: 'error'
       })
       return false
